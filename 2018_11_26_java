@@ -1,0 +1,150 @@
+package day2;
+class Instrument{
+	public void play() {
+		
+	}
+	static void tune(Instrument i) {
+		i.play();
+		System.out.println("Play");
+	}
+}
+public class Wind extends Instrument{
+	
+	public static void main(String[] args) {
+		Wind flu = new Wind();
+		Instrument.tune(flu);
+	}
+}
+class Plate{
+	Plate(int i){
+		System.out.println("Plate"+i);
+	}
+}
+class Dinner extends Plate{
+	Dinner(int i){
+		super(i+1);
+		System.out.println("Dinner"+i);
+	}
+}
+class Custom{
+	
+	Custom(int i){
+		System.out.println("Custom"+i);
+	}
+	
+}
+public class Place extends Custom{
+	private Dinner di;
+	
+	public Place(int i) {
+		super(i+1);	
+		di = new Dinner(i+1);
+		
+		System.out.println("Place"+i);
+	}
+	public static void main(String[] args) {
+		Place x = new Place(9);
+	}
+}
+class SpaceCon{
+
+	void forward(int val) {
+		System.out.println("for"+val);
+	}
+	void Tian() {
+		System.out.println("天气不好");
+	}
+}
+public class SpaceShip extends SpaceCon{
+	private String name;
+	public SpaceShip(){
+		Tian();
+	}
+	public SpaceShip(String name) {
+		this.name=name;
+	}
+	public String toString() {
+		return name;
+	}
+	
+	public static void main(String[] args) {
+		SpaceShip pro = new SpaceShip();
+		pro.forward(47);
+	}
+}
+class Game{
+	Game(int i){
+		System.out.println("Game");
+	}
+}
+class Board extends Game{
+	Board(int i){
+		super(i);
+		System.out.println("Board");
+	}
+}
+ public class Chess extends Board{
+	 Chess(){
+		 super(11);
+		 System.out.println("Chess");
+	 }
+	 public static void main(String[] args) {
+		Chess x = new Chess();
+	}
+ }
+class Soap{
+	private String s;
+	Soap(){
+		System.out.println("Soap()");
+		s="wudi";
+	}
+	public String toString() {
+		return s;
+	}
+}
+public class Bath{
+	private String 
+		s1="Come",
+		s2="baby",
+		s3;
+	private Soap cast;
+	private int i;
+	private float toy;
+	public Bath() {
+		System.out.println("Inside Bath()");
+		s3="joy";
+		toy=3.14f;
+		cast=new Soap();
+	}
+	{i=47;}
+	public String toString() {
+		if(s3==null) {
+			s3="wukong";
+		}
+		return "s1="+s1+"s2="+s2+"s3="+s3+"cast="+cast;
+	}
+	public static void main(String[] args) {
+		Bath b = new Bath();
+		System.out.println(b);
+	}
+}
+class day1{
+	day2 dd = new day2();
+}
+public class day2{
+	private String name;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	private int age;
+	
+}
