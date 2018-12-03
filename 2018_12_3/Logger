@@ -1,0 +1,59 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include "stdio.h"
+#include "stdlib.h"
+/*
+	需求分析：编写代码模拟三次密码输入的场景 且不得超过三次
+	过程分析：{
+				1.设置的登陆菜单框架
+				2.设置比对器
+			}
+*/
+Meau(){
+	printf("////////////////////\n");
+	printf("///// 1.登陆  /////\n");
+	printf("///// 0.退出  /////\n");
+	printf("////////////////////\n");
+}
+int Logger(){
+	char fir[10] = "123456";
+	char sec[10];
+	int i=0;
+	int count = 1;
+	printf("请输入密码:");
+	scanf("%s", sec);
+	
+	for (i = 0; i <= 3; i++){
+		if (i <= 2){
+			if (strcmp(sec, fir) == 0){
+				printf("输入正确");
+				break;
+			}
+			else{
+				printf("错误（还有%d机会）请重新输入:",3-count);
+				scanf("%s", sec);
+				count++;
+			}
+		}
+		if (i == 3){
+			printf("请联系管理员");
+		}
+	}
+	return 0;
+}
+int main(){
+	int input;
+	Meau();
+	printf("请选择:\n");
+	scanf("%d",&input);
+		switch (input){
+		case 1:
+			Logger();
+			break;
+		case 0:
+			break;
+		default:
+			break;
+		}
+	system("pause");
+	return 0;
+}
