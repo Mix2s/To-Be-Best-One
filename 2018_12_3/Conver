@@ -1,0 +1,31 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include "stdio.h"
+#include "stdlib.h"
+/*
+	需求分析：编写一个程序，可以一直接收键盘字符，
+				如果是小写字符就输出对应的大写字符，
+				如果接收的是大写字符，就输出对应的小写字符，
+				如果是数字不输出。 
+
+			补充 A-Z  65-90 a-z 97-122
+*/
+
+
+int main(){
+	char c;
+	scanf("%c", &c);
+	if ((c >= 'A') && (c <= 'Z')){
+		c = c + 32;
+		printf("%c", c);
+	}else 
+	if ((c>='a') && (c <='z')){
+		c = c - 32;
+		printf("%c", c);
+	}
+	else{
+		printf("%c", c);
+	}
+	
+	system("pause");
+	return 0;
+}
