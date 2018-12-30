@@ -1,0 +1,40 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include "stdio.h"
+#include "stdlib.h"
+void test(int arr[]){
+	//printf("%d ", sizeof(arr));   //数组做参数时 传入首元素地址  4个字节
+
+	//int arr[10] = { 0 };
+	//printf("%d ", sizeof(arr));   //传入 数组首地址 计算时 整个int数组的字节长度 4*10=40
+	//char ch[10] = { 0 };			//sizeof 不是函数 所以传入数组不是地址
+	//printf("%d ", sizeof(ch));    //char 类型一个数组元素一个字节
+	//test(arr);
+}
+void test(){
+	int i = 0, a = 0, b = 2, c = 3, d = 4;
+	i = a++&&++b&&d++;     //逻辑运算 表达式左侧为假 后面不进行计算
+	printf("%d %d %d %d", i, a, b, d);
+
+}
+void test6_1(const char* str){
+	printf("%s", str);
+	//test6_1("hehe bit");
+}
+void test7(){
+	char a = 0xb6;
+	short b = 0xb600;
+	int c = 0xb6000000;
+	if (a == 0xb6){
+		printf("a");
+	}
+	if (b == 0xb600){
+		printf("b");
+	}
+}
+
+int main(){
+	
+
+	system("pause");
+	return 0;
+}
