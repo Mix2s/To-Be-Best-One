@@ -1,0 +1,71 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include "stdio.h"
+#include "stdlib.h"
+void test1(){
+	//使用 位操作符 改变第i位 0（1）
+	//int i = 10;  给i移动位 
+	//将 10 二进制 1010 变为 0010
+	int num = 0;
+	int ret = num | (0x1 << 1);   // 0000 |0010
+	printf("%d", ret);
+
+	int ret2 = num&~(0x1 << 1);   // 1。0001右移变为 0010 2。0010 取反 1101 3.0000&1101 0010
+}
+void test2(){
+	//实现求一个 二进制数字中1 的个数
+	//缺点 只能计算正数的个数
+	int num = 10;
+	int count = 0;
+	while (num){
+		if (num % 2 == 1){
+			count++;
+		}
+		num = num / 2;
+
+	}
+	printf("%d", count);
+}
+void test3(){
+	int num = -1;
+	printf("%x\n", num);
+	int count = 0;
+	for (int i = 0; i < 32; i++){
+		if (((num >> i) & 1) == 1){   //循环 32 次依次将数字的每一位 右移 取出1
+			count++;
+		}
+	}
+	printf("%d", count);
+}
+void test4(){
+	int num = -1;
+	printf("%x\n", num);
+	int count = 0;
+	while (num){
+		count++;
+		num = num&(num - 1);     //1。num=10(1010) 1010&1001=1000 2.1000&0110=0000 count++两次
+	}
+	printf("%d", count);
+}
+void test5(){
+	/*const int num = 0;
+	num = 10;         常变量不能赋值只能 初始化*/
+	int a = -10;
+	int *p = NULL;
+	printf("%d ", !2);
+	printf("%d ", !0);
+	a = -a;
+	p = &a;
+	printf("%d ", sizeof(a));
+	printf("%d ", sizeof(int));
+	printf("%d ", sizeof a);     //？
+	/*printf("%d", sizeof int);     sizeif不可这样使用*/
+}
+
+
+
+int main(){
+	
+
+	system("pause");
+	return 0;
+}
