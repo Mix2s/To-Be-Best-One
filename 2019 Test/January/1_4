@@ -1,0 +1,107 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include "stdio.h"
+#include "stdlib.h"
+//void test1(int arr[]){
+//	printf("int arr[]");
+//}
+//
+//void test2(int *arr){
+//	printf("int *arr");
+//}
+//
+//void test3(int arr[10]){
+//	printf("int arr[10]");
+//}
+
+//void test2_1(int *arr[20]){
+//	printf("int *arr[20]");
+//}
+//
+//void test2_2(int **arr){
+//	printf("int **arr");
+//}
+
+//void test(int arr[3][5]){
+//	printf("int arr[3][5]");
+//}
+
+//void test2(int arr[][]){
+//  //二维数组 第二列为参数不能为空
+//}
+
+//void test2(int arr[][5]){
+//	printf("int arr[][5]");
+//}
+
+void test(int *arr){
+	printf("int *arr");  //传入类型不相符
+}
+void test2(int *arr[5]){
+	printf("int arr[5]");  //传入类型不相符
+}
+void test3(int(*arr)[5]){
+	printf("int (*arr)[5]");
+}
+void test4(int **arr){
+	printf("int **arr");  //传入类型不相符
+}
+int main(){
+	int arr[3][5] = { 0 };
+	/*test(arr);
+	test2(arr);*/
+	test(arr);
+	test2(arr);
+	test3(arr);
+	test4(arr);
+	
+	/*int arr[3] = { 0 };
+	int *arr2[20] = { 0 };*/
+	/*test1(arr);
+	test2(arr);
+	test3(arr);*/
+	//test2(arr);
+	//test2_1(arr2);
+	//test2_2(arr2);
+
+	/*char ch = 'w';
+	char *pc = &ch;
+	printf("%c", *pc);
+*/
+	/*char *ps = "hello";
+	printf("%s\n", ps);*/
+
+	//char st1[] = "hello";  //st1 地址0x0116FE28  
+	//char st2[] = "hello";  //st2 地址0x0116FE18  3
+	//char *str3 = "hello";  
+	//char *str4 = "hello";	
+	//printf("%p\n", str3);   // 002E58C0  地址相同
+	//printf("%p\n", str4);   // 002E58C0	 地址相同
+	//if (st1 == st2){
+	//	printf("OK1");
+	//}
+	//else{
+	//	printf("NO1");
+	//}
+
+	//if (str3 == str4){
+	//	printf("OK2");
+	//}
+	//else{
+	//	printf("NO2");
+	//}
+
+	//int arr[10] = { 0 };
+	//printf("%p\n", arr);   //数组 首元素的地址就是该数组的首地址
+	//printf("%p\n", &arr);
+
+	//int arr[10] = { 0 };
+	////char arr[10]={0};
+	//printf("%p\n", arr);  //00D7F97C
+	//printf("%p\n", arr+1); //00D7F980
+	//printf("%p\n", &arr);  //00D7F97C
+	//printf("%p\n", &arr+1);  //00D7F9A4
+
+	
+	system("pause");
+	return 0;
+}
