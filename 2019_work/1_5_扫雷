@@ -1,0 +1,172 @@
+#define _CRT_SECURE_NO_WARNINGS 
+#include "stdio.h"
+#include "stdlib.h"
+#include <time.h>
+#define ROW 9
+#define COL 9
+#define MINE_COUNT 10
+int Meau(){
+	printf("////////////////////\n");
+	printf("/////1.开始游戏/////\n");
+	printf("/////0.结束游戏/////\n");
+	printf("////////////////////\n");
+	int choice = 0;
+	scanf("%d", &choice);
+	return choice;
+}
+//初始化两张地图
+int Init(char out_map[ROW+2][COL+2], char mine_map[ROW+2][COL+2]){
+	//out_map初始化全为 空格
+	for (int row = 0; row < ROW + 2; row++){
+		for (int col = 0; col < COL + 2; col++){
+			out_map[row][col] = ' ';
+		}
+	}
+	 // 2.把mine_map初始化全是 '0'
+	for (int row = 0; row < ROW + 2; row++){
+		for (int col = 0; col < COL + 2; col++){
+			mine_map[row][col] = '0';
+		}
+	}
+	//3.随机种地雷
+	int mine_count = MINE_COUNT;
+	while (mine_count>0){
+		int row = rand() % ROW + 1;
+		int col = rand() % COL + 1;
+		if (mine_map[row][col] == '1'){
+			continue;
+		}
+		else{
+			mine_map[row][col] = '1';
+			--mine_count;
+		}
+	}
+	return 0;
+}  
+
+//打印地图
+void Display_Map(char out_map[ROW+2][COL+2]){
+	//打印地图 与对应坐标
+	printf("  ||");
+	//打印列坐标
+	for (int i = 1; i <= ROW; i++){
+		printf(" %d ", i);
+	}
+	printf("\n");
+	//打印横线
+	for (int i = 0; i <= ROW; i++){
+		printf("===", i);
+	}
+	printf("\n");
+	for (int row = 1; row <= ROW; row++){
+		printf(" %d||",row);
+		for (int col = 1; col <= COL; col++){
+			printf(" %c ", out_map[row][col]);
+		}
+		printf("\n");
+	}
+}
+
+void Update_Out_Map(char out_map[ROW+2][COL+2],int row,int col,char mine_map[ROW+2][COL+2]){
+	 //统计当前位置周围格子地雷数字 将数字更新 out_map
+	// row 1-9 col 1-9  row-1不会越界
+	//加入边框 防止 数组越界
+	int count = 0; //发现的地雷数字
+	/*if (mine_map[row-1][col - 1] == '1'){
+		++count;
+	}
+
+	if (mine_map[row-1][col] == '1'){
+		++count;
+	}
+
+	if (mine_map[row-1][col + 1] == '1'){
+		++count;
+	}
+
+	if (mine_map[row][col - 1] == '1'){
+		++count;
+	}
+
+
+	if (mine_map[row][col + 1] == '1'){
+		++count;
+	}
+
+	if (mine_map[row+1][col - 1] == '1'){
+		++count;
+	}
+
+	if (mine_map[row+1][col] == '1'){
+		++count;
+	}
+
+	if (mine_map[row+1][col + 1] == '1'){
+		++count;
+	}*/
+
+	count = (mine_map[row - 1][col - 1] - '0')
+		+ (mine_map[row - 1][col] - '0')
+		+ (mine_map[row - 1][col + 1] - '0')
+		+ (mine_map[row][col - 1] - '0')
+		+ (mine_map[row][col + 1] - '0')
+		+ (mine_map[row + 1][col - 1] - '0')
+		+ (mine_map[row + 1][col] - '0')
+		+ (mine_map[row + 1][col + 1] - '0');
+
+	out_map[row][col] ='0'+count;  //整形转换为字符型 0-9
+}
+
+void Game(){
+	int Blank_Count = 0;  //记录空白格个数
+
+	char out_map[ROW+2][COL+2];    //给人看的地图
+	char mine_map[ROW+2][COL+2];	//地雷的地图
+
+	Init(out_map,mine_map);							//初始化地图
+	
+	while (1){
+		system("cls");
+		Display_Map(out_map);     //展示地图(地雷被隐藏)
+
+		int row, col;
+		printf("输入检测的坐标：");
+		scanf("%d %d", &row, &col);
+
+		if (row<1 || row>ROW || COL<1 || col>COL){
+			printf("坐标非法，重新输入：\n");
+			continue;
+		}    //检查坐标是否合法
+
+		//检验是否踩到地雷
+		if (mine_map[row][col] == '1'){
+			printf("踩到地雷GG\n");
+			break;          //直接结束Game()
+		}
+
+		//验证是否扫雷成功
+		++Blank_Count;
+		if (Blank_Count == ROW*COL - MINE_COUNT){
+			printf("胜利！！！\n");
+			break;
+		}
+
+		//更新地图
+		Update_Out_Map(out_map,row,col,mine_map);
+	}
+	Display_Map(mine_map);
+}
+int main(){
+	srand((unsigned int)time(NULL));
+	while (1){
+		int choice = Meau();
+		if (choice){
+			Game();
+		}
+		else{
+			break;
+		}
+	}
+	system("pause");
+	return 0;
+}
