@@ -1,0 +1,250 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include "stdio.h"
+#include "stdlib.h"
+#include "windows.h"
+#include <conio.h>
+#define ROW 15
+#define COL 15
+int row, col;//代表行列
+char map[ROW + 1][COL + 1];
+
+//print_shuzi()
+
+//init() 初始化棋盘
+void init(){
+	for (int row = 0; row < 16; row++){
+		for (int col = 0; col < 16; col++){
+			map[row][col] = ' ';
+		}
+	}
+
+}
+//print() 打印棋盘
+void print(){
+	int row, col;
+	printf("    |");
+	for (row = 1; row <= 15; row++){
+		printf(" %d", row);
+	}
+	printf("\n");
+	printf("----|");
+	for (int i = 0; i <= 16; i++){
+		printf("---");
+	}
+	
+	printf("\n");
+	for (row = 1; row <= 15; row++){
+		if (row <= 9){
+			printf("   %d|", row );
+		}
+		if (row>9){
+			printf("  %d|", row);
+		}
+		for (col = 0; col < 16; col++){
+			printf(" %c", map[row][col]);
+		}
+		printf("\n");
+	}
+}
+//white_play() 白子落
+void white_play(){
+	printf("\n白方落子：");
+	while (1){
+	scanf("%d %d", &row, &col);
+		if (map[row][col] == ' '&&map[row][col]!='x'){  //该地方无子
+			map[row][col] = 'o';
+			break;
+		}
+		else{
+			printf("该地方有子重新落子:\n");
+		}
+	}
+	print();
+}
+//black_play() 黑子落
+void black_play(){
+	printf("\n黑方落子：");
+	while (1){
+		scanf("%d %d", &row, &col);
+		if (map[row][col] == ' '&&map[row][col] != 'o'){  //该地方无子
+			map[row][col] = 'x';
+			break;
+		}
+		else{
+			printf("该地方有子重新落子:\n");
+		}
+	}
+	print();
+}
+//check_win 判断输赢
+int check_win(int row,int col){
+	char temp; //保存下棋方的旗子属性
+	int count = 1; //统计棋子个数
+	int i = 1;
+	int j = 1;
+	int winer = 0; 
+	temp = map[row][col];
+	//水平左边
+	while (temp == map[row][col - i] && row >= 0 && row < 16 && col >= 0 && col < 15 && count < 5){
+		i++;
+		count++;
+		if (count == 5){   //五子棋五个子 开始执行判断
+			if (temp == 'o'){
+				winer = 1;
+			}
+			else{
+				winer = 2;
+			}
+		}
+	}
+		//水平右边
+		i = 1;
+		while (temp == map[row][col + i] && row >= 0 && row < 16 && col >= 0 && col < 15 && count < 5){
+			i++;
+			count++;
+			if (count == 5){   //五子棋五个子 开始执行判断
+				if (temp == 'o'){
+					winer = 1;
+				}
+				else{
+					winer = 2;
+				}
+			}
+		}
+		//垂直方向
+			i = 1;
+			count = 1;
+			while (temp == map[row - i][col] && row >= 0 && row < 16 && col >= 0 && col < 15 && count < 5){
+				i++;
+				count++;
+				if (count == 5){   //五子棋五个子 开始执行判断
+					if (temp == 'o'){
+						winer = 1;
+					}
+					else{
+						winer = 2;
+					}
+				}
+			}
+			//垂直下方
+				i = 1;
+				while (temp == map[row + i][col] && row >= 0 && row < 16 && col >= 0 && col < 15 && count < 5){
+					i++;
+					count++;
+					if (count == 5){   //五子棋五个子 开始执行判断
+						if (temp == 'o'){
+							winer = 1;
+						}
+						else{
+							winer = 2;
+						}
+					}
+				}
+			//解决左上方的斜线
+					i = 1;
+					j = 1;
+					count++;
+					while (temp == map[row - i][col - j] && row >= 0 && row < 16 && col >= 0 && col < 15 && count < 5){
+						i++;
+						j++;
+						count++;
+						if (count == 5){   //五子棋五个子 开始执行判断
+							if (temp == 'o'){
+								winer = 1;
+							}
+							else{
+								winer = 2;
+							}
+						}
+					}
+				//解决左下方的斜线
+				i = 1;
+				j = 1;
+				while (temp == map[row + i][col + j] && row >= 0 && row < 16 && col >= 0 && col < 15 && count < 5){
+					i++;
+					j++;
+					count++;
+					if (count == 5){   //五子棋五个子 开始执行判断
+						if (temp == 'o'){
+							winer = 1;
+						}
+						else{
+							winer = 2;
+						}
+					}
+				}
+			//解决右上的斜线
+					i = 1;
+					j = 1;
+					while (temp == map[row + i][col - j] && row >= 0 && row < 16 && col >= 0 && col < 15 && count < 5){
+						i++;
+						j++;
+						count++;
+						if (count == 5){   //五子棋五个子 开始执行判断
+							if (temp == 'o'){
+								winer = 1;
+							}
+							else{
+								winer = 2;
+							}
+						}
+					}
+						return winer;
+				}
+
+//show_win() 展示winer
+int show_win(){
+	int overleap = 0; //代表输赢
+	int winer; //接收胜利者
+	winer = check_win(row,col);
+	if (winer == 1){
+		overleap = 1;
+		system("cls");
+		print();
+		printf("\n白方胜利");
+		system("pause");
+	}
+	if (winer == 2){
+		overleap = 1;
+		system("cls");
+		print();
+		printf("\n黑方胜利");
+		system("pause");
+	}
+	return overleap;
+}
+//exit() 结束
+void startGame(){
+	init();  //棋盘初始化
+	print(); //打印棋盘
+	int input;
+	while (1){
+		white_play();
+		if (show_win() == 1){
+			break;
+		}
+		system("cls");
+		black_play();
+		if (show_win() == 1){
+			break;
+		}
+		system("cls");
+		print();
+	}
+	printf("1.继续\n 2.退出");
+	scanf("%d", &input);
+	if (input==1){
+		system("cls");
+		print("游戏结束\n");
+		exit(0);
+	}
+	if (input==2){
+		system("cls");
+		startGame();
+	}
+}
+int main(){
+	startGame();
+	system("pause");
+	return 0;
+}
