@@ -1,0 +1,86 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include "stdio.h"
+#include "stdlib.h"
+#include "assert.h"
+int my_strlen(const char *str){
+	assert(str != NULL);
+	int count = 0;
+	while (*str != '\0'){
+		count++;
+		str++;
+	}
+	return count;
+}
+int my_strlen_1(const char *str){
+	assert(str != NULL);
+	if (*str == '\0'){
+		return 0;
+	}
+	else{
+		return 1 + strlen(str + 1);
+	}
+}
+int my_strlen_2(const char *str){
+	assert (str != NULL);
+	const char *start = str;
+	while (*str != '\0'){
+		str++;
+	}
+	return str - start;
+}
+char *my_strcpy(char *dest, const char *cpy){
+	assert(dest != NULL);
+	assert(cpy != NULL);
+	char *str = dest;
+	while (*dest++ = *cpy++){
+		;
+	}
+	return str;
+}
+char *my_strcat1(char *dest, const char *src){
+	char *cp = dest;
+	while (*cp){
+		cp++;
+	}
+	while (*cp++ = *src++){
+		;
+	}
+	return dest;
+}
+char *my_strcat2(char *dest, const char *src){
+	char *ret = dest;
+	assert(dest);
+	assert(dest);
+	while (*dest){
+		dest++;
+	}
+	while (*src){
+		*dest++ = *src++;
+	}
+	*dest = '\0';
+	return ret;
+}
+int main(){
+
+	//strcat 
+	char str1[20] = "Aabded";
+	char str2[] = "Wudihui";
+	char *ret = my_strcat2(str1, str2);
+	printf("strcat:%s\n", ret);
+
+	//strlen 字符串长度
+	/*char a[] = "abcdef";
+	int ret = 0;
+	ret = my_strlen_2(a);
+	printf("字符串长度%d\n", ret);*/
+
+	//Strcpy 字符串拷贝
+	/*char *arr = "abcdefg";
+	char arr1[] = { 0 };
+	char *str1 = my_strcpy(arr1, arr);
+	printf("字符串拷贝：%s", str1);*/
+
+	
+	system("pause");
+	return 0;
+}
