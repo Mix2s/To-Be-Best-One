@@ -1,0 +1,79 @@
+package January;
+/*
+ * 多态
+ */
+enum Note{
+	NIDDLE_C,C_SHARP,B_FLAT;
+}
+class Instrument{
+	public void play(Note n) {
+		System.out.println("Instrumen");
+	}
+}
+
+class StaticSuper{
+	public static String staticGet() {
+		return "Bass staticGet()";
+	}
+	public String dynamicGet() {
+		return "Base dunamicGet()";
+	}
+}
+class StaticSub extends StaticSuper{
+	public void play(Note n) {
+		System.out.println("Wind.play");
+	}
+	public static String staticGet() {
+		return "Deriver StaicmicGet()";
+	}
+	public String dynamicGet() {
+		return "Deriver dynamicGet()";
+	}
+}
+class Meal{
+	Meal(){
+		System.out.println("Meal");
+	}
+}
+class Bread{
+	Bread(){
+		System.out.println("Bread");
+	}
+}
+class Chessse{
+	Chessse(){
+		System.out.println("Chessse");
+	}
+}
+class Letture{
+	Letture(){
+		System.out.println("Letture");
+	}
+}
+class Lunch extends Meal{
+	Lunch(){
+		System.out.println("Lunch");
+	}
+}
+class PortableLunch extends Lunch{
+	PortableLunch(){
+		System.out.println("PortableLunch");
+	}
+}
+public class Sandwich extends PortableLunch{
+	private Bread b = new Bread();
+	private Chessse c = new Chessse();
+	private Letture l = new Letture();
+	public Sandwich(){
+		System.out.println("Sandwich");
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+//		StaticSuper sup = new StaticSub();
+//		System.out.println(sup.staticGet());
+//		System.out.println(sup.dynamicGet());
+			new Sandwich();
+		
+	}
+
+}
