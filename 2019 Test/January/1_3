@@ -1,0 +1,79 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include "stdio.h"
+#include "stdlib.h"
+int check(){
+	union{
+		int i;
+		char c;
+	}un;
+	un.i = 1;
+	return un.c;
+}
+int main(){
+	/*int i = 0x11223344;
+	int ret = (*(char *)&i);
+	if (ret == 11){
+		printf("小端");
+	}
+	else{
+		printf("大端");
+	}*/
+	//int ret = check();
+	//if (ret == 1){
+	//	printf("小端");
+	//}
+	//else{
+	//	printf("大端");
+	//}
+
+	/*char a = -1;
+	signed char b = -1;
+	unsigned char c = -1;
+	printf("a=%d,b=%d,c=%d", a, b, c);*/
+
+	//char a = -128;
+	//char b = -1;
+	//char c = 1;
+	//char d = 128;
+	//printf("a=%u,b=%u,c=%u,d=%u\n", a, b, c, d);
+	////a=4294967168,b=4294967295,c=1,d=4294967168
+	//printf("a=%x,b=%x,c=%x,d=%x\n", a,b,c,d); // 4294967168 隐式转换 char >>> int >>> unsigned ffffff80
+	//// a=ffffff80,b=ffffffff,c=1,d=ffffff80
+	
+
+	//int i = -20;
+	//printf("%x\n", i);  //ffffffec  int类型一圈 256 FF
+	//unsigned int j = 10;
+	//printf("%x\n", j);   // a(16进制)
+	//printf("%x\n", i + j);  //fffffff6
+	//printf("%d\n", i + j); //-10
+
+	//unsigned int i;
+	//for (i = 9; i >= 0; i--){   
+	//	printf("%u", i);             //转了一圈 0》》》255
+	//}
+
+	//char a[1000];
+	//int i;
+	//for (i = 0; i < 1000; i++){   
+	//	a[i] = -1 - i;
+	//}
+	//printf("%d", strlen(a));  //a[255] = '\0'
+
+	//unsigned char i = 0;
+	//for (i = 0; i <= 255; i++){
+	//	printf("hello %d\n",i);   //无限循环  0>>>255>>0
+	//}
+
+	//int n = 9;
+	//float *pFloat = (float *)&n;
+	//printf("n的值为 %d\n", n);
+	//printf("*pFloat 的值 %f\n", *pFloat); //n的值为 9
+	//                                      //*pFloat 的值 0.000000
+
+	//*pFloat = 9.0;
+	//printf("num的值 %d\n", n);
+	//printf("*pFloat的值 %f\n", *pFloat);   //num的值 1091567616   *pFloat的值 9.000000
+	system("pause");
+	return 0;
+}
