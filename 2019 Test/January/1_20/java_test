@@ -1,0 +1,90 @@
+package January;
+/*
+ * 复用类
+ */
+
+//class WaterSource{
+//	private String s;
+//	WaterSource(){
+//		System.out.println("WaterSource");
+//		s="Constructed";
+//	}
+//	public String toString() {
+//		return s;
+//	}
+//}
+//
+//class Art{
+//	Art(){
+//		System.out.println("Art");
+//	}
+//}
+//class Drawing extends Art{
+//	Drawing(){
+//		System.out.println("Drawing");
+//	}
+//}
+
+class Game{
+	Game(int i){
+		System.out.println("Game");
+	}
+}
+
+class BoardGame extends Game{
+	BoardGame(int i){
+		super(i);
+			System.out.println("BoardGame");
+	}
+}
+
+class Gizmo{
+	public void spin() {
+		
+	}
+}
+public class Test_1_20{
+	void with(final Gizmo g) {
+		
+	}
+	void without(Gizmo g) {
+		g = new Gizmo();
+		g.spin();
+	}
+	int g(final int i) {
+		return i+1;
+	}
+
+//public class Test_1_20 extends BoardGame{
+//	private String valve1,valve2,valve3,valve4;
+//	WaterSource source = new WaterSource();
+//	private int i;
+//	private float f;
+//	public String toString() {
+//		return "valve1="+valve1+"valve2+="+valve2+"valve3+="+valve3+"vakve4+="+valve4+"source+="+source;
+//				
+//	}
+//	
+//	public Test_1_20() {
+//		System.out.println("Constructor");
+//	}
+
+//	Test_1_20(int i) {
+//		super(i);
+//		// TODO Auto-generated constructor stub
+//		System.out.println("Test_1_20");
+//	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//	Test_1_20 test = new Test_1_20();
+//		System.out.println(test);
+			//Test_1_20 test = new Test_1_20(11);
+			Test_1_20 test = new Test_1_20();
+			test.without(null);
+			test.with(null);
+		
+	}
+
+}
+
