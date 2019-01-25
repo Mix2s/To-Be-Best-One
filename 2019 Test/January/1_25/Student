@@ -1,133 +1,101 @@
 package test_1_25;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
-public class MangeStudent {
-	private ArrayList<Student>array_list=null;
-	private static int number=0;
-	private static final String user_name="wudi";
-	private static final String user_password="wudihui";
-	private static final String ensure_botton="确定";
-	private static final String cancel_botton="取消";
+public class Student {
+	private Integer id;
+	private String name;
+	private Integer age;
+	private Character sex;
+	private double math;
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Integer getAge() {
+		return age;
+	}
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+	public Character getSex() {
+		return sex;
+	}
+	public void setSex(Character sex) {
+		this.sex = sex;
+	}
+	public double getMath() {
+		return math;
+	}
+	public void setMath(double math) {
+		this.math = math;
+	}
+	public double getPhysics() {
+		return physics;
+	}
+	public void setPhysics(double physics) {
+		this.physics = physics;
+	}
+	public double getEnglish() {
+		return english;
+	}
+	public void setEnglish(double english) {
+		this.english = english;
+	}
+	public double getJava() {
+		return java;
+	}
+	public void setJava(double java) {
+		this.java = java;
+	}
+	public double getSum() {
+		return sum;
+	}
+	public void setSum(double sum) {
+		this.sum = sum;
+	}
+	public double getAvg() {
+		return avg;
+	}
+	public void setAvg(double avg) {
+		this.avg = avg;
+	}
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", name=" + name + ", age=" + age + ", sex=" + sex + ", math=" + math
+				+ ", physics=" + physics + ", english=" + english + ", java=" + java + ", sum=" + sum + ", avg=" + avg
+				+ "]";
+	}
+	private double physics;
+	private double english;
+	private double java;
+	private double sum;
+	private double avg;
 	
-	public MangeStudent() {
+	public Student() {
 		// TODO Auto-generated constructor stub
-		array_list=new ArrayList<Student>();
+		super();
 	}
 	
-	public Student get_studentInfo() {
-		Integer student_id=0;
-		Integer student_age=0;
-		double student_math=0.0;
-		double student_physics=0.0;
-		double student_english=0.0;
-		double student_java=0.0;
-		double student_sum=0.0;
-		double student_avg=0.0;
-		Scanner sc1=new Scanner(System.in);
-		System.out.println("输入学生学号：");
-		
-		student_id=sc1.nextInt();
-		
-		Scanner sce=new Scanner(System.in);
-		System.out.println("输入有错误；");
-		student_id=sce.nextInt();
-		
-		Scanner sc2=new Scanner(System.in);
-		System.out.println("请输入学生姓名");
-		String student_name = sc2.nextLine();
-		
-		Scanner sc3=new Scanner(System.in);
-		System.out.println("请输入学生性别");
-		Character student_sex = sc3.nextLine().charAt(0);
-		
-		Scanner sc4=new Scanner(System.in);
-		System.out.println("请输入学生年龄");
-		String student_ = sc4.nextLine();
-		student_age=sc4.nextInt();
-		Scanner sce2=new Scanner(System.in);
-		System.out.println("输入错误年龄");
-		student_age=sce2.nextInt();
-		
-		Scanner sc5=new Scanner(System.in);
-		System.out.println("输入学生数学成绩");
-		student_math = sc5.nextDouble();
-		Scanner sce3=new Scanner(System.in);
-		System.out.println("输入错误数学成绩");
-		student_math=sce3.nextDouble();
-		
-		Scanner sc6=new Scanner(System.in);
-		System.out.println("输入学生物理成绩");
-		student_physics=sc6.nextDouble();
-		Scanner sce4=new Scanner(System.in);
-		System.out.println("输入错误物理成绩");
-		student_physics=sce4.nextDouble();
-		
-		Scanner sc7=new Scanner(System.in);
-		System.out.println("输入学生英语成绩");
-		student_english=sc7.nextDouble();
-		Scanner sce5=new Scanner(System.in);
-		System.out.println("输入错误英语成绩");
-		student_english=sce5.nextDouble();
-		
-		Scanner sc8=new Scanner(System.in);
-		System.out.println("输入学生Java成绩");
-		student_java=sc8.nextDouble();
-		Scanner sce6=new Scanner(System.in);
-		System.out.println("输入错误java成绩");
-		student_java=sce6.nextDouble();	
-		
-		student_sum=student_math+student_physics
-				+student_english+student_java;
-		student_avg=student_sum/4;
-		
-		return new Student(student_id,
-				student_name, student_age,
-				student_sex, student_math,
-				student_physics, student_english, 
-				student_java, student_sum, student_avg);
-	}
-	public void add_student(Student s) {
-		array_list.add(s);
-	}
-	
-	public void selet_ArrayList() {
-		System.out.println("查询结果：\n学生学号\t"
-				+ "姓名\t性别\t年龄\t数学");
-		
-	for(int i=0;i<array_list.size();i++) {
-		Student s=array_list.get(i);
-		System.out.println(s);
-	}	
-	}
-	public void delete_student(Integer id) {
-		for(int i=0;i<array_list.size();i++){
-			Student s=array_list.get(i);
-			if(id.equals(s.getId())) {
-				System.out.println("要删除的学生信息"+array_list.get(i));
-				System.out.println("确定删除的学生");
-				Scanner in=new Scanner(System.in);
-				String cin_botton=in.nextLine();
-				if(cin_botton.equals(ensure_botton)) {
-					array_list.remove(i);
-					System.out.println("删除成功");
-				}else if(cin_botton.equals(cancel_botton)) {
-					System.out.println("取消操作");
-					break;
-				}else {
-					System.out.println("输入有误");
-				}
-			}
-		}
-	}
-	public boolean exsit_student(Integer id) {
-		for(int i=0;i<array_list.size();i++){
-			Student s = array_list.get(i);
-			if(id.equals(s.getId())) {
-				return true;
-			}
-		}
-			return false;
+	public Student(Integer id,String name,Integer age,Character sex,
+			double math,double physics,double english,double java,
+			double sum,double avg) {
+		super();
+		this.id=id;
+		this.name=name;
+		this.age=age;
+		this.sex=sex;
+		this.math=math;
+		this.physics=physics;
+		this.english=english;
+		this.java=java;
+		this.sum=sum;
+		this.avg=avg;
 	}
 }
