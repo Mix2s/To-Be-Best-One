@@ -130,4 +130,166 @@ public class MangeStudent {
 		}
 			return false;
 	}
+	
+	public void set_student(Integer id,String name,Integer age,
+			Character sex,double math,double physics,double english,
+			double java) {
+		for(int i=0;i<array_list.size();i++) {
+			Student s=array_list.get(i);
+			if(id.equals(s.getId())) {
+				s.setId(id);
+				s.setName(name);
+				s.setAge(age);
+				s.setSex(sex);
+				s.setMath(math);
+				s.setPhysics(physics);
+				s.setEnglish(english);
+				s.setJava(java);
+				System.out.println("修改学生信息："+array_list.get(i));
+				System.out.println("修改完成，请继续");
+			}else {
+				System.out.println("输入的学好不存在");
+			}
+		}
+	}
+	
+	public void sort_student_age() {
+		Student[] s = new Student[array_list.size()];
+		for(int i=0;i<array_list.size();i++) {
+			s[i]=array_list.get(i);
+		}
+		for(int i=0;i<s.length-1;i++) {
+			for(int j=i+1;j<s.length;j++) {
+				if(s[i].getAge()<s[j].getAge()) {
+				Student stu=s[i];
+				s[i]=s[j];
+				s[j]=stu;
+				}
+			}
+		}
+		System.out.println("排序结果：\n学生学号\t"
+				+ "姓名\t性别\t年龄\t数学\t物理\t英语\t"
+				+ "java\t总分\t平均分");
+		for(Student stu:s) {
+			System.out.println(stu);
+		}
+	}
+	
+	public void sort_student_sum() {
+		Student[] s = new Student[array_list.size()];
+		for(int i=0;i<array_list.size();i++) {
+			s[i]=array_list.get(i);
+		}
+		for(int i=0;i<s.length-1;i++) {
+			for(int j=i+1;j<s.length;j++) {
+				if(s[i].getSum()<s[j].getSum()) {
+					Student stu=s[i];
+					s[i]=s[j];
+					s[j]=stu;
+				}
+			}
+		}
+		System.out.println("排序结果：\n学生学号\t"
+				+ "姓名\t性别\t年龄\t数学\t物理\t英语\t"
+				+ "java\t总分\t平均分");
+		for(Student stu:s) {
+			System.out.println(stu);
+		}
+	}
+	
+	public void srot_student_avg() {
+		Student[] s =new Student[array_list.size()];
+		for(int i=0;i<array_list.size();i++){
+			s[i]=array_list.get(i);
+		}
+		for(int i=0;i<s.length-1;i++) {
+			for(int j=i+1;j<s.length;j++) {
+				if(s[i].getAvg()<s[j].getAvg()) {
+					Student stu=s[i];
+					s[i]=s[j];
+					s[j]=stu;
+				}
+			}
+		}
+		System.out.println("排序结果：\n学生学号\t"
+				+ "姓名\t性别\t年龄\t数学\t物理\t英语\t"
+				+ "java\t总分\t平均分");
+		for(Student stu:s) {
+			System.out.println(stu);
+		}
+	}
+	public boolean user_cin() {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("请输入学生管理员用户名");
+		String name=sc.nextLine();
+		String regex="\\w+";
+		boolean b1=name.matches(regex);
+		if(b1) {
+			System.out.println("输入用户名符合要求，继续");
+		}else {
+			System.out.println("输入用户名不符合要求");
+		}
+		Scanner sc1=new Scanner(System.in);
+		System.out.println("输入密码");
+		String password = sc1.nextLine();
+		if(!name.equals(user_name)||!password.equals(user_password)) {
+			System.out.println("用户名密码错误");
+			return false;
+		}
+		if(name.equals(user_name)&&password.equals(user_password)) {
+			return true;
+		}
+		return false;
+	}
+	public void enter_system() {
+		System.out.println("欢迎进入系统");
+		System.out.println("请输入操作\n 1.添加学生"
+				+ "\n 2.删除学生 \n 3.修改学生"
+				+ "\n 4.查询学生 \n 5.年龄排序"
+				+ "\n 6.总分排序 \n 7.平均分排序"
+				+ "\n 8.退出系统" );
+		System.out.println("输入你的操作");
+		Scanner sc2=new Scanner(System.in);
+		number=sc2.nextInt();
+		System.out.println("输入整数");
+		if(number==1) {
+			add_student(get_studentInfo());
+		}else if(number==2) {
+			Scanner sc3=new Scanner(System.in);
+			System.out.println("输入删除的学生学号");
+			int student_id=sc3.nextInt();
+			if(exsit_student(student_id)) {
+				delete_student(student_id);
+			}else {
+				System.out.println("找不到相应的学生");
+			}
+		}else if(number==3) {
+			Scanner sc4=new Scanner(System.in);
+			System.out.println("输入要修改的学生学号");
+			Integer student_id=sc4.nextInt();
+			if(exsit_student(student_id)) {
+				Student s=get_studentInfo();
+				System.out.println("输入学生学号"+s.getId());
+				set_student(s.getId(),s.getName(),s.getAge()
+						,s.getSex(),s.getMath(),s.getPhysics(),
+						s.getEnglish(),s.getJava());
+			}else {
+				System.out.println("找不到相应的学生，请重新输入");
+			 }
+			}else if(number==4) {
+				selet_ArrayList();
+			}else if(number==5) {
+				sort_student_age();
+			}else if(number==6) {
+				sort_student_sum();
+		    }else if(number==7) {
+		    	sort_student_age();
+		    }else if(number==7) {
+		    	System.out.println("感谢使用学生管理系统");
+		    	System.exit(1);
+		    }else {
+		    	System.out.println("输入有误重新输入");
+		    }
+	}
 }
+
