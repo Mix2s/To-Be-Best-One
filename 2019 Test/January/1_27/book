@@ -1,0 +1,32 @@
+package Show_book;
+
+import java.util.Scanner;
+
+public class book {
+	private static int x;
+	private static int num;
+	private static int num1;
+	
+	public static void main(String[] args) {
+		bookname bname=new bookname();
+		booknum bnum=new booknum();
+		Scanner s = new Scanner(System.in);
+		System.out.println("输入命令 按照书名查找");
+		try {
+		x=s.nextInt();
+		}catch(Exception e) {
+			System.out.println("输入错误，请按提示输入");
+			book.main(null);
+		}
+		if(x==1) {
+			System.out.println("输入图书名称");
+			String name=s.next();
+			bname.output(name);
+		}else if(x==2) {
+			System.out.println("输入图书序号（输入数字命令）");
+			num=s.nextInt();
+			bnum.output1(num);
+			book.main(null);
+		}
+	}
+}
