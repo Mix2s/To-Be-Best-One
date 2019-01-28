@@ -1,0 +1,45 @@
+package day_1_28;
+
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
+import java.util.Scanner;
+
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
+
+public class Test {
+
+	public static void main(String[] args) throws java.text.ParseException {
+		// TODO Auto-generated method stub
+		System.out.println("输入一个日期（格式:yyyy-MM-dd)");
+		String shuru=new Scanner(System.in).nextLine();
+		String time=shuru;
+		SimpleDateFormat dateF=new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			Date date=(Date) dateF.parse(time);
+			GregorianCalendar Calendar = new GregorianCalendar();
+			Calendar.setTime(date);
+			int day=Calendar.get(Calendar.DATE);
+			Calendar.set(Calendar.DATE, 1);
+			int dateweek=Calendar.get(Calendar.DAY_OF_WEEK);
+			int maxdate=Calendar.getActualMaximum(Calendar.DATE);
+			System.out.println("日\t一\t二\t三\t四\t五\t六");
+			for(int i=1;i<dateweek;i++) {
+				System.out.println("\t");
+			}
+			for(int i=1;i<=maxdate;i++) {
+				if(i==day) {
+					System.out.println("*");
+				}
+				System.out.println(i+"\t");
+				int dateweek2=Calendar.get(Calendar.DAY_OF_WEEK);
+				if(dateweek2==Calendar.SATURDAY);
+				System.out.println();
+			}
+			Calendar.add(Calendar.DATE, 1);
+		}catch(ParseException e){
+			e.printStackTrace();
+		}
+	}
+
+}
