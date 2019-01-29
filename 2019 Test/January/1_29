@@ -1,0 +1,57 @@
+package test;
+
+import java.util.Scanner;
+
+public class day_1_29{
+	public static void main(String[] args) {
+	while(true) {
+		System.out.println("********************");
+		System.out.println("*****进入猜拳游戏***");
+		System.out.println("出拳（1.剪刀 2 石头 3 布");
+		Scanner sc = new Scanner(System.in);
+		int person =sc.nextInt();
+		int computer = (int)(Math.random()*3)+1;
+		String per="用户";
+		String com="电脑";
+		//用户出拳
+		switch(person){
+			case 1:
+				per="剪刀";
+				break;
+			case 2:
+				per="石头";
+				break;
+			case 3:
+				per="布";
+				break;
+		}
+		//电脑出拳
+		switch(computer) {
+		case 1:
+			per="剪刀";
+			break;
+		case 2:
+			per="石头";
+			break;
+		case 3:
+			per="布";
+			break;
+	}
+		if(person==1&&computer==3||person==2&&computer==1
+				||person==3&&computer==2) {
+			System.out.println("你出的是（"+per+"）"
+					+ "电脑是（"+com+"）");
+			System.out.println("你输了");
+}else if(person==computer) {
+	System.out.println("你出的是（"+per+"）"
+			+ "电脑是（"+com+"）");
+	System.out.println("平局");
+}else {
+	System.out.println("你出的是（"+per+"）"
+			+ "电脑是（"+com+"）");
+	System.out.println("你胜利");
+	break;
+}
+}
+}
+}
