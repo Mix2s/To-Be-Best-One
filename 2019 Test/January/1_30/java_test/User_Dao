@@ -1,0 +1,56 @@
+package java_test;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class User_Dao {
+	public static ArrayList<User> quaryAll(){
+		Connection conn=null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		ArrayList<User> list  = new ArrayList<User>();
+		
+		conn = DataAccess.getConnection();
+		String sql = "select * from test;";
+		try {
+			stmt  = conn.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			while(rs.next()){
+				User item = new User();
+				item.setAge(rs.getInt("age"));
+				item.setName(rs.getString("name"));
+				item.setId(rs.getInt("id"));
+				list.add(item);
+			}
+			return list;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+					rs=null;
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			if(stmt!=null) {
+				try {
+					stmt.close();
+					stmt = null;
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+	}
+}
