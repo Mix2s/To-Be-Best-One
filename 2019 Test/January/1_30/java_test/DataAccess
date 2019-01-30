@@ -1,0 +1,51 @@
+package java_test;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DataAccess {
+	private static final String driver="com.mysql.jabc.Driver";
+	private static final String url="jdbc:mysql://localhost:3306/day01";
+	private static final String username="root";
+	private static final String passwork="109742";
+	private static Connection conn=null;
+	
+	static {
+		try {
+			Class.forName(driver);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static Connection getConnection() {
+		if(conn==null) {
+			try {
+				conn=DriverManager.getConnection(url,username,passwork);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return conn;
+		}
+		
+		if(conn!=null) {
+			System.out.println("连接成功");
+		}else {
+			System.out.println("连接正常");
+		}
+		return conn;
+	}
+	public static Boolean closeConnection() {
+		if(conn!=null) {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return true;
+	}
+}
