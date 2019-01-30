@@ -1,0 +1,17 @@
+package java_test;
+
+import java.util.ArrayList;
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ArrayList<User> userList = User_Dao.quaryAll();
+		for(User user : userList) {
+			System.out.println("查询出来的id："+user.getId());
+			System.out.println("查询出来的name:"+user.getName());
+			System.out.println("查询出来的age:"+user.getAge());
+		}
+	}
+
+}
