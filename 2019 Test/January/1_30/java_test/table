@@ -1,0 +1,19 @@
+CREATE SCHEMA `1` ;
+
+
+CREATE TABLE `1`.`new_table` (
+  
+`id` INT NOT NULL,
+ 
+ `name` VARCHAR(45) NULL,
+ 
+ `age` INT NULL,
+  PRIMARY KEY (`id`)
+);
+
+
+INSERT INTO `day01`.`test` (`id`, `name`) VALUES ('1', 'wudi');
+
+INSERT INTO `day01`.`test` (`id`, `name`) VALUES ('2', 'wangxiaoming');
+
+INSERT INTO `day01`.`test` (`id`, `name`) VALUES ('3', 'lixiaohong');
