@@ -1,0 +1,39 @@
+package day_1_31;
+
+public class student {
+	private int id;
+	private String sno;
+	private String department;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getSno() {
+		return sno;
+	}
+	public void setSno(String sno) {
+		this.sno = sno;
+	}
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+	public String getHometown() {
+		return hometown;
+	}
+	public void setHometown(String hometown) {
+		this.hometown = hometown;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	private String hometown;
+	private String sex;
+}
