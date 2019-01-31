@@ -1,0 +1,36 @@
+use day01;
+
+create table admin(
+	
+id int(11) not null auto_increment primary key,
+ 
+   name varchar(20) not null,
+   
+password varchar(20) not null
+
+)
+
+
+;
+
+insert into admin values(1,'admin','admin');
+
+CREATE TABLE `day01`.`student` (
+  
+`id` INT NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+ 
+ `sno` VARCHAR(45) NOT NULL,
+ 
+ `department` VARCHAR(45) NOT NULL,
+
+  `hometown` VARCHAR(45) NOT NULL,
+ 
+ `sex` VARCHAR(45) NOT NULL,
+ 
+ PRIMARY KEY (`id`)
+);
+
+INSERT INTO `day01`.`student` (`id`, `name`, `sno`, `department`, `hometown`, `sex`) VALUES ('1', 'wang', '001', 'jisuanji', 'xian', 'nan');
+
+INSERT INTO `day01`.`student` (`id`, `name`, `sno`, `department`, `hometown`, `sex`) VALUES ('2', 'li', '002', 'dianxin', 'beijing', 'nv');
