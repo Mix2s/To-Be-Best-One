@@ -1,0 +1,48 @@
+package day_1_31;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class Base_Dao {
+	protected final DBUtil db = DBUtil.getDBUtil();
+	protected ResultSet rs;
+	private static Base_Dao base_Dao;
+	
+	public Base_Dao() {
+		//build_ability_Dao();
+		init();
+	}
+	
+	private void init() {
+		
+	}
+	
+	public static synchronized Base_Dao getAbility_Dao(DAO dao) {
+		switch(dao) {
+		case Admin_Dao:
+		if(base_Dao == null||base_Dao.getClass()!=Admin_Dao.class) {
+			base_Dao = Admin_Dao.getInstance();
+		}
+		break;
+		case Student_Dao:
+		if(base_Dao = =null||base_Dao.getClass()!=Student_Dao.class) {
+			base_Dao = Student_Dao.getInstance();
+		}
+		break;
+		default:
+		break;
+	}
+	return base_Dao;
+}
+	protected void destroy() {
+		try {
+			if(rs!=null) {
+				rs.close();
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			db.close();
+		}
+	}
+}
