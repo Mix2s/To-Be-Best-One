@@ -1,0 +1,59 @@
+package day_2_3;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class DBUtil {
+	static final String driver="com.mysql.jdbc.Driver";
+	static final String url="jdbc:mysql://localhost:3306/day01";
+	static final String user="root";
+	static final String password="109742";
+	
+	public static void main(String[] args) {
+		Connection conn=null;
+		Statement stmt=null;
+		try {
+			Class.forName(driver);
+			
+			System.out.println("连接数据库。。。");
+			conn=DriverManager.getConnection(url,user,password);
+			
+			System.out.println("实例化Statement...");
+			stmt=conn.createStatement();
+			String sql="SELECT id, name, url FROM websites";
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				String url = rs.getString("url");
+				
+				System.out.println("ID"+id);
+				System.out.println("站点名称："+name);
+				System.out.println("站点 url"+url);
+				System.out.println("/n");
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		}catch(SQLException e) {
+			//处理JDBC 错误
+			e.printStackTrace();
+		}catch(Exception e) {
+			//处理Class.forName
+			e.printStackTrace();
+		}finally {
+			//关闭资源
+			try {
+				if(stmt!=null)
+					conn.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println("GoodByel");
+	}
+}
