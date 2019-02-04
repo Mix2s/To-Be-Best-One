@@ -1,0 +1,13 @@
+package tools;
+
+import java.util.Scanner;
+
+public class Operate {
+	public static String getInput() {
+		Scanner scan = new Scanner(System.in);
+		String carName="";
+		System.out.println("输入用户名称");
+		carName=scan.next();
+		return  carName;
+	}
+}
