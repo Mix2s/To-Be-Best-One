@@ -1,0 +1,43 @@
+package entity;
+
+public class BMW implements Car{
+	private String brand="BMW";
+	private double price=10000;
+	
+	public BMW() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public BMW(String brand,double price) {
+		this.brand=brand;
+		this.price=price;
+	}
+	
+	public String getBrand() {
+		           return brand;
+		      }
+		  
+	public void setBrand(String brand) {
+		           this.brand = brand;
+		    }
+		   
+	 public double getPrice() {
+		           return price;
+	}
+		   
+	 public void setPrice(double price) {
+		           this.price = price;
+     }
+	
+	 @Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "BMW [brand=" + brand + ", price=" + price + "]";
+	}
+	 
+	 public void printInfo() {
+		 System.out.println("I am BMW");
+		 System.out.println(this.toString());
+	 }
+
+}
