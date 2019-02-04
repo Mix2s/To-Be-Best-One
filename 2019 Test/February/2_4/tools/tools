@@ -1,0 +1,16 @@
+package tools;
+
+import entity.Car;
+
+public class Factory {
+	public static Car getInstance(String carName) {
+		Car car = null;
+		
+		try {
+			car=(Car) Class.forName(carName).newInstance();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return car;
+	}
+}
