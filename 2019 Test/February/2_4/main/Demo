@@ -1,0 +1,22 @@
+package main;
+
+import java.util.Properties;
+
+import entity.Car;
+import tools.Factory;
+import tools.Init;
+import tools.Operate;
+
+public class Demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Car car = null;
+		
+		String carName = Operate.getInput();
+		Properties pro = Init.getProperty();
+		car=Factory.getInstance(pro.getProperty(carName));
+		car.printInfo();
+	}
+
+}
