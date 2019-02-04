@@ -1,7 +1,0 @@
-package entity;
-/*
- * Description 定义汽车接口
- */
-public interface Car {
-	public void printInfo();
-}
