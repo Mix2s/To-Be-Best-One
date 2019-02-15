@@ -1,0 +1,21 @@
+package day_2_15;
+
+import java.util.Scanner;
+
+public class HomeWork_3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("输入一个字母：\n");
+		Scanner input=new Scanner(System.in);
+		char zimu=input.next().charAt(0);
+		if(zimu>=97&&zimu<=122) {
+			System.out.println("该子母是小数");
+			zimu=(char)(zimu-32);
+			System.out.println("转换后的大写字母"+zimu);
+		}else {
+			System.out.println("该子母不是小写字母");
+		}
+	}
+
+}
