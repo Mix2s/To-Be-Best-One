@@ -1,0 +1,25 @@
+package day_2_15;
+
+import java.util.Scanner;
+
+public class HomeWork_4 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int a,b,c;
+		System.out.println("输入三个正整数");
+		Scanner in = new Scanner(System.in);
+		a=in.nextInt();
+		b=in.nextInt();
+		c=in.nextInt();
+		if(a<=0||b<=0||c<=0) {
+			System.out.println("输入错误");
+		}
+		if((a+b)>c&&(a+c)>b&&(b+c)>a) {
+			System.out.println("能够组成三角形");
+		}else {
+			System.out.println("不能构成三角形");
+		}
+	}
+
+}
