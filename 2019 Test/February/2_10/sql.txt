@@ -1,0 +1,15 @@
+use day01;
+
+CREATE TABLE gjp_zhangwu(
+   zwid INT PRIMARY KEY AUTO_INCREMENT,  
+   flname VARCHAR(200),
+   money DOUBLE,
+   zhanghu VARCHAR(100),
+   createtime DATE,
+   description  VARCHAR(1000)
+);
+
+SELECT * FROM gjp_zhangwu;
+
+INSERT  INTO gjp_zhangwu(zwid,flname,money,zhangHu,createtime,description) VALUES (1,'吃饭支出',247,'交通银行','2016-03-02','家庭聚餐');
+INSERT  INTO gjp_zhangwu(zwid,flname,money,zhangHu,createtime,description) VALUES (2,'工资收入',12345,'现金','2016-03-15','开工资了');
