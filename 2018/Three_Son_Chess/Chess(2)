@@ -1,0 +1,134 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#define ROW 3
+#define COL 3
+char Chess[ROW][COL];
+void init(){
+	//TDD
+	for (int row = 0; row < ROW; row++){
+		for (int col = 0; col < COL; col++){
+			Chess[row][col] = ' ';
+		}
+	}
+}
+void print(){
+	//TDDD
+	for (int row = 0; row < ROW; row++){
+		printf(" %c | %c | %c\n", Chess[row][0],Chess[row][1],Chess[row][2]);
+		if (row != ROW - 1){
+			printf("---|---|---\n");
+		}
+
+	}
+}
+void player(){
+	//TDDD
+	printf("玩家落子，输入坐标(row,col):");
+	while (1){
+		int row, col;
+		scanf("%d %d", &row, &col);
+		if (row >= 0 && COL >= 0 && row < ROW && col < COL){
+			if (Chess[row][col] == ' '){
+				Chess[row][col] = 'x';
+				break;
+			}
+			else{
+				printf("该位置有子，重新落子：");
+				continue;
+			}
+		}
+		else{
+			printf("该位置不符合情况，重新落子：");
+			continue;
+		}
+	}
+
+}
+void computer(){
+	//TDDD
+	int row, col;
+	while(1){
+		row = rand() % ROW;
+		col = rand() % COL;
+		if (Chess[row][col] == ' '){
+			{
+				Chess[row][col] = 'o';
+				break;
+			}
+		}
+	}
+
+}
+char check(){
+	//判断行 胜利
+	int row, col;
+	for (row = 0; row < ROW; row++){
+		if (Chess[row][0] == Chess[row][1] && Chess[row][1] == Chess[row][2]&&Chess[row][1] != ' '){
+			return Chess[row][1];
+		}
+	}
+	//判断 列胜利
+	for (col = 0; col < COL; col++){
+		if (Chess[0][col] == Chess[1][col] && Chess[1][col] ==Chess[2][col] && Chess[1][col] != ' '){
+			return Chess[1][col];
+		}
+	}
+	//判断对角线胜利
+	if (Chess[0][0] == Chess[1][1] && Chess[2][2] == Chess[1][1] && Chess[0][0] != ' '){
+		return Chess[0][0];
+	}else
+	if (Chess[0][2] == Chess[1][1] && Chess[1][1] == Chess[2][0] && Chess[1][1] != ' '){
+		return Chess[1][1];
+	}else
+	//无子可落时
+	if (isFull()){
+		return '--';
+	}
+	else{
+		return 0;
+	}
+}
+int isFull(){
+	int row, col;
+	for (row = 0; row < ROW; row++){
+		for (col = 0; col < COL; col++){
+			if (Chess[row][col] == ' ')
+				return 0;
+		}
+	}
+	return 1;
+}
+void victory(char win){
+	//TDDD
+	if (win == 'o'){
+		printf("电脑胜利!!");
+	}
+	if (win == 'x'){
+		printf("玩家胜利!!");
+	}
+	if (win == '--'){
+		printf("平局");
+	}
+}
+int main(){
+	char win = 0;
+	init(); //初始化棋盘
+	srand((unsigned)time(NULL));
+	while (1){
+		print(); //打印棋盘
+		player();  //玩家落子
+		win = check();  //检查
+		if (win != 0){
+			break;
+		}
+		computer();
+		win = check();
+		if (win != 0){
+			break;
+		}
+	}	victory(win);
+	system("pause");
+	return 0;
+}

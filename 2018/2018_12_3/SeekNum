@@ -1,0 +1,55 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+/*
+	需求分析 通过二分法查询数组内的数字
+		过程{
+			1.生成一个有序数组
+			2.输入待测数字
+			3.二分法比对{
+				取数组中值进行比较，缩小比值区间
+			}
+		}
+			
+
+*/
+int compar(int num, int arr[], int left, int right, int mid){
+	while (left <= right){
+		mid = (left + right) / 2;
+		if (arr[mid]<num){   
+			left = mid + 1;
+		}else
+		if (arr[mid]>num){
+			right = mid - 1;
+		}else
+			break;
+	}
+	if (left <= right){
+		printf("找到了,下标为%d\n",left);
+	}
+	else{
+		printf("找不到\n");
+	}
+}
+
+int main(){
+	int random = rand() % 100 + 1;
+	int i;
+	int arr[10];
+	int num;
+	//生成一个数组
+	arr[0] = random;
+	for (i = 1; i <= 9; i++){
+		arr[i] = arr[i-1] + 1;
+	}
+	int left=0;
+	int right = sizeof(arr) / sizeof(arr[0])-1;
+	int mid = 0;
+	//输入数字
+	printf("输入数字:");
+	scanf("%d", &num);
+	compar(num,arr,left,right,mid);
+	system("pause");
+	return 0;
+}

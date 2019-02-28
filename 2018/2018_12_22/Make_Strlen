@@ -1,0 +1,33 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include "stdio.h"
+#include "stdlib.h"
+/*
+	通过递归和非递归的方式实现 
+	C 库函数 Strlen
+	stren() 函数   计算给定字符串的（unsigned int型）长度，不包括'\0'在内
+
+
+*/
+int Strlen_Non(char *string){
+	int i=0;
+	while (*string != '\0'){
+		i++;
+		string++;
+	}
+	return i;
+}
+
+int Strlen(char *string){
+	if (*string==0){
+		return 0;
+	}
+	else{
+		return 1 + Strlen(++string);
+	}
+}
+int main(){
+	char* string = "wangguang";
+	printf("%d\n", Strlen(string));
+	system("pause");
+	return 0;
+}

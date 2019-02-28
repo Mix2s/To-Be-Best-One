@@ -1,0 +1,24 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include "stdio.h"
+#include "stdlib.h"
+/*
+	by @hui
+	主要用来测试 使用递归达到反向输出字符串的能力
+	
+*/
+int Reverse_strring(char *string){
+	if (*string == '\0'){
+		printf("%c", *string);
+	}
+	else{
+		Reverse_strring(++string);
+		printf("%c",*(--string));
+	}
+	return 0;
+}
+int main(){
+	char* string = "asddas ";
+	Reverse_strring(string);
+	system("pause");
+	return 0;
+}
