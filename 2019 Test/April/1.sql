@@ -74,3 +74,44 @@ select sum(shuxue) from exam_result;
 select sum(shuxue) from exam_result exam_result where shuxue<60;
 select avg(yuwen+shuxue+yingyu) avg from exam_result;
 select max(yingyu) from exam_result;
+
+select current_date();
+select current_time();
+select current_timestamp();
+select date_add('2007-10-28',interval 10 day);
+select date_sub('2007-10-28',interval 10 day);
+select datediff('2017-10-10','2016-9-1');
+create table tmp(
+	id int primary key auto_increment,
+	brithday date
+);
+insert into tmp(brithday) values(current_date());
+create table msg(
+	id int primary key auto_increment,
+	content varchar(30) not null,
+	sendtime datetime
+	);
+insert into msg(content,sendtime) values('hello1', now());
+insert into msg(content,sendtime) values('hello2', now());
+select * from msg where date_add(sendtime,interval 2 minute)>now();
+select charset(ename) from emp;
+select concat(name,'is',chinese,'nuk，shuxue'，math) as dept from students;
+select length(name),name from students;
+select replace(ename,'s','上海'),ename from emp;
+select concat(lcase(substring(ename,1,1)),substring(ename,2)) from emp;
+select ceiling(23.4);
+ select abs(-100.2);
+ select floor(23.7);
+ select rand();
+ select user();
+ select password('root');
+ select ifnull('abc','123');
+  select ifnull(null,'123');
+  select * from emp where (sal>500 or job='MANAGER') and ename like 'j%';
+select * from emp order by deptno,sal desc;
+select ename,sal*12+ifnull(comm,0) as 'year' from emp order by year desc;
+select ename,job from emp where sal=(select max(sal) from emp);
+select ename,sal from emp where sal>(select avg(sal) from emp);
+select deptno,format(avg(sal),2),max(sal) from emp group by deptno;
+select deptno,avg(sal) as avg_sal from emp group by deptno having avg_sal<2000;
+select job,count(*),format(avg(sal),2) from emp group by job;
