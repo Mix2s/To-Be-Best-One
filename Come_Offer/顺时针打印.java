@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class day513 {
-    List a = new ArrayList();
+    ArrayList<Integer> a = new ArrayList<>();
     public static void main(String[] args) {
         int[][] array = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
         day513 dd = new day513();
-        dd.print(array);
+        List ll = dd.print(array);
+        for(Object i:ll){
+            System.out.print((int)i);
+        }
     }
 
     public  ArrayList print(int[][] array) {
@@ -22,33 +25,33 @@ public class day513 {
         return a;
     }
 
-    public void printEdge(int[][] a,int tr,int tc,int dr,int dc){
+    public void printEdge(int[][] array,int tr,int tc,int dr,int dc){
         if(tr==dr){  //当只有一行时候 把这一行打印出来
             for(int i = tc;i<=dc;i++){
-                a.add(a[tr][i]);
+                a.add(array[tr][i]);
             }
         }
         if(tc==dc){ //当只有一列时候
             for(int i=tr;i<=dr;i++){
-                a.add(a[i][tc]);
+                a.add(array[i][tc]);
             }
         }
         int curc = tc;
         int curr = tr; //两个当前变量 存储当前位置
         while(curc!=dc){
-            a.add(a[tr][curc]);
+            a.add(array[tr][curc]);
             curc++;
         }
         while(curr!=dr){
-            a.add(a[curr][tc]);
+            a.add(array[curr][tc]);
             curr++;
         }
         while(curc!=tc){
-            a.add(a[dr][curc]);
+            a.add(array[dr][curc]);
             curc--;
         }
         while(curr!=tr){
-            a.add(a[curr][tc]);
+            a.add(array[curr][tc]);
             curr--;
         }
     }
