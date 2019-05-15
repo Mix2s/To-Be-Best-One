@@ -38,8 +38,8 @@ public class day513 {
         }
         int curc = tc;
         int curr = tr; //两个当前变量 存储当前位置
-        while(curc!=dc){
-            a.add(array[tr][curc]);
+        while(curc!=dc){        //遍历最上面的一行 从最左到最右
+            a.add(array[tr][curc]);     //拿到之后存入List
             curc++;
         }
         while(curr!=dr){
