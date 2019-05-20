@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>div+css</title>
+    <style>
+    #main{
+        width:400px;
+        height:300px;
+        border: 1px solid #000;
+        margin: 300px 0 0 400px;
+        background-image:url(lib/1.jpg);
+        background-repeat: no-repeat;
+        background-position: top center;
+    }
+    #user{
+        margin: 80px 0 0 65px;
+    }
+    #pwd{
+        margin: 10px 0 0 80px;
+    }
+    #btn{
+        margin: 20px 0 0 130px; 
+    }
+    #input_user{
+        background-image: url(lib/head.png);
+        background-repeat: no-repeat;
+        padding-left: 26px;
+    }
+    #input_pwd{
+        background-image: url(lib/key.jpg);
+        background-repeat: no-repeat;
+        padding-left: 28px;
+    }
+    </style>
+</head>
+<body>
+    <div id="main">
+    <form action="#" method="post">
+        <div id="user">
+            用户名：<input type="text" id="input_user">
+        </div>
+        <div id="pwd">
+            密&nbsp;&nbsp;码: <input type="password" id="input_pwd"><br>
+        </div>
+        <div id="btn">
+            <input type="submit" value="登录">
+            <input type="button" value="注册">
+        </div>
+    </form>
+    </div>
+</body>
+</html>
