@@ -8,7 +8,7 @@ class Myprint{
         this.out = out;
     }
     public void print(String str) throws IOException {
-        this.out.write(str.getBytes());
+        this.out.write(str.getBytes());；；；
     }
 }
 public class day516 {
