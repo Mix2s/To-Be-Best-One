@@ -21,4 +21,4 @@ public class day692 {
         node = root.left;
         root.right = node;
     }
-}
+}aa
