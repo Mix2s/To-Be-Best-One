@@ -5,25 +5,25 @@
 #include "time.h"
 /*
 @author
-×Ü½á ÌáÉı ÎÊÌâ»ã×Ü
-Óë½â¾ö
+æ€»ç»“ æå‡ é—®é¢˜æ±‡æ€»
+ä¸è§£å†³
 */
 
 
-//CÓïÑÔÊı×éÔ½½çÎÊÌâ
+//Cè¯­è¨€æ•°ç»„è¶Šç•Œé—®é¢˜
 int arr(){
 
 	int i = 0;
 	int arr[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 	for (i = 0; i <= 12; i++){
 		arr[i] = 0;
-		printf("±ê¼Ç%d\n", i);
+		printf("æ ‡è®°%d\n", i);
 	}
 	return 0;
 }
 /*
-ÑİÊ¾¶à¸ö×Ö·û´ÓÁ½±ßÏòÖĞ¼ä¿¿Â£
-ÌâÄ¿ÒªÇó ½«¶à¸ö×Ö·û´ÓÁ½¶ËÏòÖĞ¼äÒÆ¶¯
+æ¼”ç¤ºå¤šä¸ªå­—ç¬¦ä»ä¸¤è¾¹å‘ä¸­é—´é æ‹¢
+é¢˜ç›®è¦æ±‚ å°†å¤šä¸ªå­—ç¬¦ä»ä¸¤ç«¯å‘ä¸­é—´ç§»åŠ¨
 */
 int sorting(){
 	
@@ -35,7 +35,7 @@ int sorting(){
 	while (left <= right){
 		Sleep(2000);
 		arr2[left] = arr1[left];
-		arr2[right] = arr1[right];
+		arr2[right] = arr1[righat];
 		left++;
 		right--;
 		system("cls");
@@ -43,12 +43,12 @@ int sorting(){
 	}
 	return 0;
 }
-//¼ÆËãNµÄ½×³Ë
+//è®¡ç®—Nçš„é˜¶ä¹˜
 int result(){
 	int res = 1;
 	int i;
 	int n;
-	printf("ÊäÈëÒª¼ÆËãµÄÊı×Ö:");
+	printf("è¾“å…¥è¦è®¡ç®—çš„æ•°å­—:");
 	scanf("%d", &n);
 	for (i = 1; i <= n; i++){
 		res = res*i;
@@ -57,13 +57,13 @@ int result(){
 	printf("%d", res);
 
 }
-//n!ÇóºÍ
+//n!æ±‚å’Œ
 int ResSum(){
 	int res = 1;
 	int i;
 	int n;
 	int sum = 0;
-	printf("ÊäÈëÒª¼ÆËãµÄÊı×Ö:");
+	printf("è¾“å…¥è¦è®¡ç®—çš„æ•°å­—:");
 	scanf("%d", &n);
 	for (i = 1; i <= n; i++){
 		res *= i;
@@ -74,19 +74,19 @@ int ResSum(){
 }
 
 int game(){
-	int num = rand() % 100 + 1;        //²úÉúËæ»úÊı %100È¡Óà¼ÓÒ» ±ä³É100ÒÔÄÚµÄËæ»úÊı
+	int num = rand() % 100 + 1;        //äº§ç”Ÿéšæœºæ•° %100å–ä½™åŠ ä¸€ å˜æˆ100ä»¥å†…çš„éšæœºæ•°
 	int in = 0;
-	while (1){						//Ö´ĞĞÂß¼­ÅĞ¶Ï
-		printf("ÊäÈëÊı×Ö");
+	while (1){						//æ‰§è¡Œé€»è¾‘åˆ¤æ–­
+		printf("è¾“å…¥æ•°å­—");
 		scanf("%d",&in);
 		if (in > num){
-			printf("´óÁË");
+			printf("å¤§äº†");
 		}
 		else if (in < num){
-			printf("Ğ¡ÁË");
+			printf("å°äº†");
 		}
 		else{
-			printf("¶ÔÁË");
+			printf("å¯¹äº†");
 			break;
 		}
 	}
@@ -94,14 +94,14 @@ int game(){
 	
 }
 void menu(){
-	     printf("*************************\n");
-		 printf("*****  1.CÊı×éÔ½½ç *****\n");
-		 printf("*****  2.×Ö·û¿¿Â£  *****\n");
-		 printf("*****  3.N£¡       *****\n");
-		 printf("*****  4.n!ÇóºÍ    *****\n");
-		 printf("*****  5.²ÂÊı×Ö    *****\n");
-		 printf("*****  0.²»ÍæÁË    *****\n");
-		 printf("*************************\n");
+	     printf("*****************ï¼ˆï¼‰ï¼ˆï¼‰********\n");
+		 printf("*****  1.Cæ•°ç»„è¶Šç•Œ *****\n");
+		 printf("*****  2.å­—ç¬¦é æ‹¢  *****\n");
+		 printf("*****  3.Nï¼       *****\n");
+		 printf("*****  4.n!æ±‚å’Œ    *****\n");
+		 printf("*****  5.çŒœæ•°å­—    *****\n");
+		 printf("*****  0.ä¸ç©äº†    *****\n");
+		 printf("*********************ï¼ˆï¼‰ï¼ˆï¼‰****\n");
 
 }
 int main(){
@@ -109,7 +109,7 @@ int main(){
 	srand((unsigned)time(NULL));
 	do{
 		menu();
-		printf("×öÄãÏë×öµÄ");
+		printf("åšä½ æƒ³åšçš„");
 		scanf("%d", &in);
 
 		switch (in){
@@ -124,10 +124,10 @@ int main(){
 		case(5) : game();
 			break;
 		case(0) :
-			printf("Ğ»Ğ»ºÏ×÷");
+			printf("è°¢è°¢åˆä½œ");
 			break;
 		default:
-			printf("ÇëºÃºÃÑ¡Ôñ");
+			printf("è¯·å¥½å¥½é€‰æ‹©");
 			break;
 		}
 	} while (in);
