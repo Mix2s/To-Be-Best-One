@@ -1,0 +1,6 @@
+0:0:0:0:0:0:0:1 - - [20/Jul/2019:18:24:02 +0800] "GET /travel/header.html HTTP/1.1" 304 - http-bio-80-exec-1 43
+0:0:0:0:0:0:0:1 - - [20/Jul/2019:18:24:03 +0800] "GET /travel/user/findUser HTTP/1.1" 200 - http-bio-80-exec-3 16
+0:0:0:0:0:0:0:1 - - [20/Jul/2019:18:24:03 +0800] "GET /travel/category/findAll HTTP/1.1" 200 247 http-bio-80-exec-2 417
+0:0:0:0:0:0:0:1 - - [20/Jul/2019:18:24:05 +0800] "GET /travel/route_list.html?cid=1 HTTP/1.1" 200 13464 http-bio-80-exec-5 4
+0:0:0:0:0:0:0:1 - - [20/Jul/2019:18:24:05 +0800] "GET /travel/user/findUser HTTP/1.1" 200 - http-bio-80-exec-6 1
+0:0:0:0:0:0:0:1 - - [20/Jul/2019:18:24:05 +0800] "GET /travel/category/findAll HTTP/1.1" 200 247 http-bio-80-exec-4 7
