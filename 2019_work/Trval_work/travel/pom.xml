@@ -9,13 +9,6 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
     <dependencies>
-
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.16.10</version>
-        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -75,14 +68,19 @@
             <version>1.1.1</version>
             <scope>compile</scope>
         </dependency>
-        <!--beanUtils-->
+        <!--beanUtils
+			将实体类进行封装 
+			BeanUtils.populate(对象,当前表单中的所有的参数Map集合)
+		-->
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
             <version>1.9.2</version>
             <scope>compile</scope>
         </dependency>
-        <!--jackson-->
+        <!--jackson
+				json解析的支持
+		-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
@@ -100,7 +98,7 @@
         </dependency>
 
 
-        <!--javaMail-->
+        <!--javaMail:支持邮件技术-->
         <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>javax.mail-api</artifactId>
@@ -111,7 +109,9 @@
             <artifactId>javax.mail</artifactId>
             <version>1.5.3</version>
         </dependency>
-        <!--jedis-->
+        <!--jedis
+			java连接数据库的客户端
+		-->
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>

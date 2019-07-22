@@ -1,9 +1,7 @@
 cn\bite\travel\web\servlet\ActiveUserServlet.class
 cn\bite\travel\dao\CategoryDao.class
 cn\bite\travel\util\MailUtils$1.class
-test\changeString.class
 cn\bite\travel\dao\RouteDao.class
-test\arrSort.class
 cn\bite\travel\domain\Favorite.class
 cn\bite\travel\domain\User.class
 cn\bite\travel\service\UserService.class
@@ -20,7 +18,6 @@ cn\bite\travel\web\servlet\CategoryServlet.class
 cn\bite\travel\domain\RouteImg.class
 cn\bite\travel\util\Md5Util.class
 cn\bite\travel\web\servlet\FindUserServlet.class
-test\isPa.class
 cn\bite\travel\service\CategoryService.class
 cn\bite\travel\web\servlet\LoginServlet.class
 cn\bite\travel\web\servlet\ExitServlet.class
@@ -34,8 +31,6 @@ cn\bite\travel\util\JedisUtil.class
 cn\bite\travel\dao\impl\CategoryDaoImpl.class
 cn\bite\travel\domain\Category.class
 cn\bite\travel\dao\UserDao.class
-test\reverStr.class
 cn\bite\travel\dao\impl\RouteDaoImpl.class
-test\delectString.class
 cn\bite\travel\service\impl\UserServiceImpl.class
 cn\bite\travel\domain\ResultInfo.class

@@ -1,4 +1,4 @@
-package cn.bite.travel.util;
+package cn.bite.travel.util;;
 
 import java.security.MessageDigest;
 

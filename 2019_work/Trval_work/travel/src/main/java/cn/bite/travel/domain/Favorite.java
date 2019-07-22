@@ -1,5 +1,8 @@
 package cn.bite.travel.domain;
 
+import cn.bite.travel.domain.Route;
+import cn.bite.travel.domain.User;
+
 import java.io.Serializable;
 
 /**
@@ -8,7 +11,7 @@ import java.io.Serializable;
 public class Favorite implements Serializable {
     private Route route;//旅游线路对象
     private String date;//收藏时间
-    private User user;//所属用户
+    private cn.bite.travel.domain.User user;//所属用户
 
     /**
      * 无参构造方法
@@ -22,7 +25,7 @@ public class Favorite implements Serializable {
      * @param date
      * @param user
      */
-    public Favorite(Route route, String date, User user) {
+    public Favorite(Route route, String date, cn.bite.travel.domain.User user) {
             this.route = route;
             this.date = date;
             this.user = user;
@@ -48,7 +51,7 @@ public class Favorite implements Serializable {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(cn.bite.travel.domain.User user) {
         this.user = user;
     }
 }

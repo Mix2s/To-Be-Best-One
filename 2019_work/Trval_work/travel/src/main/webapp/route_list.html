@@ -9,36 +9,217 @@
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" href="css/search.css">
     <script src="js/jquery-3.3.1.js"></script>
-    <!--header.html 获取分类id 通过分类id查询当前总记录数-->
+    <!--getParmaret.js-->
+    <script src="js/getParameter.js"></script>
+    <!--
+        header.html--获取分类id,通过分类id查询当前总记录数
+    -->
+
     <script>
-       $(function () {
-           //当前页面加载 获取 分类信息（header.html）传递过来的cid
-           //location可以获取？之后
-           var serch = location.search;
-           //通脱location.seacrh获取属性之后 id 号
-           var str = serch.split("=")[1];
-           //向后台 发送ajax
-           $.get("route/pageQuery",{cid:cid},function (data) {
-               //获取总记录数和总页数
-                $("#totalPage").html(data.totaPage);
-                $("#totalCount").html(data.totalCount);
-               //分页页码展示
-               //遍历从服务器响应的总页数
-               var lis = "";
-               lis+=' <li><a href="">首页</a></li>';
-               lis+=' <li><a class="threeword"><a href="#">上一页</a></li>';
-               for(var i=1;i<=data.totalPage;i++){
-                   lis = ' <li><a href="#">'+i+'</a></li>';
-               }
-               lis+=' <li><a class="threeword"><a href="javascript:;">下一页</a></li>';
-               lis+=' <li><a class="threeword"><a href="javascript:;">末页</a></li>';
-               $("#pageNum").html(lis);
-               //列表数据展示
-               /**
-                *
-                */
-           })
-       });
+        $(function () {
+            //当前页面一加载，获取分类信息中（header.html）传递过来的cid
+            //location对象获取URL？后面的部分（search属性）
+          /*  var serach = location.search; //?   cid=5
+            //测试：通过location.search属性获取urL?后面部分
+            // alert(serach) ;
+            //分割
+           var cid =  serach.split("=")[1] ;*/
+           var cid  = getParameter("cid");
+
+            var rname = getParameter("ranme") ;
+            if(rname!=null){
+                //解码 （防止出现乱码）
+                //window对象的函数
+                rname = window.decodeURIComponent(rname) ;
+            }
+            alert(cid) ;
+            alert(rname) ;
+           //页码载入后,执行load,通过分类id查询后台数据
+
+            load(cid,null,rname) ;
+
+
+        });
+
+        function load(cid,currentPage,rname){
+
+
+            //向后台发送ajax请求,后台应该数据(PageBean对象)
+            $.get("route/pageQuery",{cid:cid,currentPage:currentPage,rname:ranme},function (data) {
+                //data:{totalCount:xxx,totalPage:xxx..}
+
+                //获取总记录数和总页数
+                $("#totalPage").html(data.totalPage);
+                $("#totalCount").html( data.totalCount);
+
+                //1.分页的页码的展示
+                /**
+                 *   <li><a href="">首页</a></li>
+                 <li class="threeword"><a href="#">上一页</a></li>
+                 <li class="curPage"><a href="#">1</a></li>
+                 <li><a href="#">2</a></li>
+                 <li><a href="#">3</a></li>
+                 <li><a href="#">4</a></li>
+                 <li><a href="#">5</a></li>
+                 <li><a href="#">6</a></li>
+                 <li><a href="#">7</a></li>
+                 <li><a href="#">8</a></li>
+                 <li><a href="#">9</a></li>
+                 <li><a href="#">10</a></li>
+                 <li class="threeword"><a href="javascript:;">下一页</a></li>
+                 <li class="threeword"><a href="javascript:;">末页</a></li>
+                 */
+
+                var lis = "" ;
+
+                //首页
+                var firtPage = '<li onclick="javascript:load('+cid+',1,\''+rname+'\')"><a href="javascript:void(0)">首页</a></li>' ;
+                //上一页
+                //计算上一页的页码
+               beforeNum = data.currentPage-1;
+               //判断上一页的数据
+                if(beforeNum<1){
+                    beforeNum = 1 ;
+                }
+
+                var beforePage = '<li onclick="javascript:load('+cid+',beforeNum,\''+rname+'\')" class="threeword"><a href="javascript:void(0 )">上一页</a></li>' ;
+
+                lis += firtPage ;
+                lis += beforePage ;
+
+
+                //定义两个位置
+                var begin ;//开始位置
+                var end ;//结束位置
+
+                //显示10页
+                if(data.totalPage<10){
+                    //当前总页数小于10页
+                    begin =1 ;
+                    end = data.totalPage ;
+                }else{
+                    //如果总页数大于10
+                    //前5后4
+                    begin = data.currentPage -5; //currentPage =4
+                    end = data.currentPage+4 ; //cruuentPage = 11
+
+                    //前面不够5个 ,后面补齐10个
+                  if(begin<1){
+                        begin =1 ;
+                        end = begin + 9 ;
+                    }
+                    //后面不足四个,前面补齐10个
+                    if(end>data.totalPage){
+                        end = data.totalPage ;
+                        begin = end - 9;
+                    }
+                }
+
+                for(var i = begin;i <=end ;i++){
+                    var li ;
+                    //判断是否是当前页码
+                    if(data.currentPage==i){
+                        li ='<li class="curPage" onclick="javascript:load('+cid+','+i+',\''+rname+'\')"><a href="javascript:void(0)">'+i+'</a></li>' ;
+                    }else{
+                        //不是当前页,页码上不用加上颜色标记
+                        var li ='<li  onclick="javascript:load('+cid+','+i+',\''+rname+'\')"><a href="javascript:void(0)">'+i+'</a></li>' ;
+                    }
+                    // var li ='<li onclick="javascript:load('+cid+','+i+')"><a href="javascript:void(0)">'+i+'</a></li>' ;
+
+                    lis += li ;
+
+                }
+
+
+
+                //遍历服务器响应过来的总页数,将每页的页码获取到
+               /* for(var i = 1 ; i <=data.totalPage;i++){
+                    var li ;
+                    //判断是否是当前页码
+                  if(data.currentPage==i){
+                        li ='<li class="curPage" onclick="javascript:load('+cid+','+i+')"><a href="javascript:void(0)">'+i+'</a></li>' ;
+                    }else{
+                      //不是当前页,页码上不用加上颜色标记
+                        var li ='<li  onclick="javascript:load('+cid+','+i+')"><a href="javascript:void(0)">'+i+'</a></li>' ;
+                    }
+                   // var li ='<li onclick="javascript:load('+cid+','+i+')"><a href="javascript:void(0)">'+i+'</a></li>' ;
+
+                    lis += li ;
+                }*/
+                //下一页
+                var nextPage = '<li class="threeword"><a href="javascript:;">下一页</a></li>' ;
+                //末页
+                var lastPage = ' <li class="threeword"><a href="javascript:;">末页</a></li>' ;
+                lis += nextPage ;
+                lis += lastPage ;
+
+                //将lis作为ul的文本
+                $("#pageNum").html(lis) ;
+
+
+
+
+
+
+                //2.列表的数据展示
+                /**
+                 *  <li>
+                 <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
+                 <div class="text1">
+                 <p>【减100元 含除夕/春节出发】广州增城三英温泉度假酒店/自由行套票</p>
+                 <br/>
+                 <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
+                 </div>
+                 <div class="price">
+                 <p class="price_num">
+                 <span>&yen;</span>
+                 <span>299</span>
+                 <span>起</span>
+                 </p>
+                 <p><a href="route_detail.html">查看详情</a></p>
+                 </div>
+                 </li>
+                 */
+
+                var list_lis = "" ;
+                //遍历后台传递过来的pageBean中的列表数据集合
+                for(var i = 0 ; i < data.list.length;i++){
+                    var route = data.list[i] ;
+                    var li = ' <li>\n' +
+                        '                 <div class="img"><img src="'+route.rimage+'" style="width: 299px" ></div>\n' +
+                        '                     <div class="text1">\n' +
+                        '                     <p>'+route.rname+'</p>\n' +
+                        '                     <br/>\n' +
+                        '                     <p>'+route.routeIntroduce+'</p>\n' +
+                        '                     </div>\n' +
+                        '                     <div class="price">\n' +
+                        '                     <p class="price_num">\n' +
+                        '                     <span>&yen;</span>\n' +
+                        '                     <span>'+route.price+'</span>\n' +
+                        '                     <span>起</span>\n' +
+                        '                     </p>\n' +
+                        '                     <p><a href="route_detail.html">查看详情</a></p>\n' +
+                        '                 </div>\n' +
+                        '                 </li>' ;
+
+                    list_lis += li ;
+
+                }
+                $("#list_page").html(list_lis) ;
+
+
+                //重新定位到头部
+                //scrollTo（x,y）：定位到页面中的某个位置
+                window.scrollTo(0,0) ;
+
+
+            }) ;
+
+        }
+
+
+
+
     </script>
 </head>
 <body>
@@ -191,10 +372,10 @@
                         <span id="totalPage"></span>页<span id="totalCount"></span>条
                     </div>
                     <div class="pageNum">
-                        <ul>
+                        <ul id="pageNum">
                             <li><a href="">首页</a></li>
                             <li class="threeword"><a href="#">上一页</a></li>
-                            <li  class="curPage"><a href="#">1</a></li>
+                            <li class="curPage"><a href="#">1</a></li>
                             <li><a href="#">2</a></li>
                             <li><a href="#">3</a></li>
                             <li><a href="#">4</a></li>

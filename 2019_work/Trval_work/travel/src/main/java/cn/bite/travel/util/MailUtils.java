@@ -1,4 +1,4 @@
-package cn.bite.travel.util;
+package cn.bite.travel.util;;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -10,7 +10,7 @@ import java.util.Properties;
  */
 public final class MailUtils {
     private static final String USER = "1097427662@qq.com"; // 发件人称号，同邮箱地址
-    private static final String PASSWORD = "tykgpomgswhrifga"; // 如果是qq邮箱可以使户端授权码，或者登录密码
+    private static final String PASSWORD = "xtnybipwsmpgghbf"; // 如果是qq邮箱可以使户端授权码，或者登录密码
 
     /**
      *
@@ -31,6 +31,7 @@ public final class MailUtils {
             props.put("mail.password", PASSWORD);
 
             // 构建授权信息，用于进行SMTP进行身份验证
+            //验证
             Authenticator authenticator = new Authenticator() {
                 @Override
                 protected PasswordAuthentication getPasswordAuthentication() {
@@ -68,7 +69,10 @@ public final class MailUtils {
     }
 
     public static void main(String[] args) throws Exception { // 做测试用
-        MailUtils.sendMail("maxhui1998@163.com","你好，这是一封测试邮件，无需回复。","测试邮件");
+        MailUtils.sendMail("Maxhui1998@163.com","您的邮箱尚未激活,请<a href='http://localhost/travel/user/active?code=\"+7ff3178fddad40d6aa96ea10e87d442e+\"'>点击激活</a>","测试邮件");
         System.out.println("发送成功");
     }
+
+
+
 }

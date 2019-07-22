@@ -10,38 +10,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * 1.获取code激活码
- * 判断激活码 是否存在
- * 存在不为null 激活用户
- * 3.判断用户是否为空
- */
 @WebServlet("/activeUserServlet")
 public class ActiveUserServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //1接受激活码
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        //1.接收激活码
         String code = request.getParameter("code");
-        //判断是否存在激活码
+        //2.判断激活码是否为空
         if(code!=null){
-            //调用service完成激活
-            UserService userService = new UserServiceImpl();
-            boolean flag = userService.active(code);
-            //提示信息（向浏览器相应内容）
-            String msg = "";
+            //存在.调用service完成激活功能
+            UserService userService = new UserServiceImpl() ;
+            boolean flag = userService.active(code) ;
+
+            //3.提示信息 (直接向浏览器响应内容)
+            String msg = "" ;
             if(flag){
-                //激活成功
-                msg="激活成功,请<a href='login.html'>登录</a>";
+                //激活成功了
+                msg = "您已经激活成功了,请<a href='/travel/login.html'>登录</a>" ;
             }else{
                 //激活失败
-                msg="登录失败,未激活";
-            }
+                msg ="激活失败,请联系管理人员" ;
+             }
             //设置中文乱码
             response.setContentType("text/html;charset=utf-8");
             response.getWriter().write(msg);
+
         }
+
+
+
+
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            doPost(request,response);
+        this.doPost(request,response);
     }
 }

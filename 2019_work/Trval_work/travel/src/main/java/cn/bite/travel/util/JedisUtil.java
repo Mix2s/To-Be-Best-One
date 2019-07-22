@@ -17,7 +17,8 @@ public final class JedisUtil {
 
     static {
         //读取配置文件
-        InputStream is = JedisPool.class.getClassLoader().getResourceAsStream("jedis.properties");
+        InputStream is = JedisPool.class.getClassLoader().
+                getResourceAsStream("jedis.properties");
         //创建Properties对象
         Properties pro = new Properties();
         //关联文件
@@ -27,7 +28,7 @@ public final class JedisUtil {
             e.printStackTrace();
         }
         //获取数据，设置到JedisPoolConfig中
-        //jedisConfig  jedis 客服端配置最大连接数 最大空闲数 超时时间
+        //JedisConfig:jedis的配置对象(配置最大连接数/最大空闲数/超时时间)
         JedisPoolConfig config = new JedisPoolConfig();
         config.setMaxTotal(Integer.parseInt(pro.getProperty("maxTotal")));
         config.setMaxIdle(Integer.parseInt(pro.getProperty("maxIdle")));
@@ -41,7 +42,7 @@ public final class JedisUtil {
 
     /**
      * 获取连接方法
-     * jdeis操作底层redis客户端对象
+     * Jedis操作底层redis客户端对象
      */
     public static Jedis getJedis() {
         return jedisPool.getResource();

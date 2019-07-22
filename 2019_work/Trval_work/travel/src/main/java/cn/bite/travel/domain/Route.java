@@ -23,7 +23,7 @@ public class Route implements Serializable {
 
     private Category category;//所属分类
     private Seller seller;//所属商家
-    private List<RouteImg> routeImgList;//商品详情图片列表
+    private List<cn.bite.travel.domain.RouteImg> routeImgList;//商品详情图片列表
 
 
 

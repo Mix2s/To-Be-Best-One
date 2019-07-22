@@ -18,26 +18,29 @@
     <script src="js/angular.min.js"></script>
 	<!--导入jquery-->
 	<script src="js/jquery-3.3.1.js"></script>
-
-	<!--登录-->
+	<!--登录的前台-->
 	<script>
+
 		//页面载入事件
 		$(function () {
-			//点击登录触发点击事件
+			//点击登录,触发点击事件
 			$("#btn_submit").click(function () {
-				$.post("user/login",$("#loginForm").serialize(),function (data) {
-					//接收服务器响应的结果对象
+				//向服务器发送异步请求  username=xxx&password=xxx
+				$.post("user/login",$("#loginForm").serialize(),function(data){
+					//接收服务器响应过来的结果对象
 					if(data.flag){
-						//响应成功 跳转index.html
-						location.href="index.html";
+						//响应成功.跳转index.html
+						location.href="index.html" ;
 					}else{
-						//在login.html 提示错误信息
-						$("#errorMsg").html(data.errorMsg);
+						//在login.html提示错误信息
+						$("#errorMsg").html(data.errorMsg) ;
 					}
-				});
-			});
-		});
+				}) ;
+
+			}) ;
+		}) ;
 	</script>
+
 </head>
 
 <body>
@@ -56,8 +59,9 @@
         	<div class="login_inner">
 				
 				<!--登录错误提示消息-->
-        		<div id="errorMsg" class="alert alert-danger" ></div>
+        		<div id="errorMsg" class="alert alert-danger" >
 
+				</div>
 				<form id="loginForm"  accept-charset="utf-8">
         			<input type="hidden" name="action" value="login"/>
 					<input name="username" type="text" placeholder="请输入账号" autocomplete="off">

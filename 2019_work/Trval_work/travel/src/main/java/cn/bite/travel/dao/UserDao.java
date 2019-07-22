@@ -3,38 +3,41 @@ package cn.bite.travel.dao;
 import cn.bite.travel.domain.User;
 
 /**
- * 用户相关数据库访问接口层
+ * 用户相关的数据库访问接口层
  */
 public interface UserDao {
-    /*
-        根据用户名查询用户
-     */
-    public User finByUsername(String username);
-
     /**
-     * 保存
+     * 根据用户名查询用户
+     * @param username
+     * @return
      */
-    public void saveUser(User user);
+    public User findByUsername(String username) ;
 
 
     /**
-     * 查询用户code
+     * 保存用户
+     * @param user
+     */
+    public void saveUser(User user) ;
+
+    /**
+     * 根据激活码查询对应的用户
      * @param code
      * @return
      */
     User findByCode(String code);
 
     /**
-     * 更新用户激活状态
+     * 更新用户的激活状态(N--Y)
      * @param user
      */
     void updateStatus(User user);
 
     /**
-     * 根据登录页面账户密码查询
+     * 根据用户名和密码查询用户
      * @param username
      * @param password
      * @return
      */
-    User finByUsernameAndPassword(String username, String password);
+    User findByUsernameAndPassword(String username, String password);
 }

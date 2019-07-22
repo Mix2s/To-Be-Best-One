@@ -15,28 +15,44 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * 抽取的基类
+ * 抽查的基类
  */
-public class BaseServlet extends HttpServlet {
-   //重写HttpServlet 中的 service方法
 
+//RegistUserServlet
+//registUserServlet
+public class BaseServlet extends HttpServlet {
+   /* protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }*/
+
+   //重写HttpServlet中的service方法(serlvet的入口)
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String uri = req.getRequestURI();
+    public void service(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // /   travle/user/add  :获取访问子类Servlet的uri的路径
+        String uri = request.getRequestURI();
+        // 获取uri中的方法名add   travel/user/add
+        String methodName = uri.substring(uri.lastIndexOf("/")+1)  ;//start end
 
-        String methodName = uri.substring(uri.lastIndexOf("/") + 1);
-
-        //获取子类对象
-       Class clazz =  this.getClass();
-        //执行调用子类中所有的方法  暴力获取直接拿到私有的
-        //强制解决 反射 验证
-
+        //1 .获取子类对象
+        Class clazz = this.getClass();
+        //2.调用子类中的方法
+        //暴力反射(获取子类私有的/受保护的方法)
         try {
-            Method method =clazz.getDeclaredMethod(methodName,HttpServletRequest.class,HttpServletResponse.class);
-            method.setAccessible(true);  //强制解决反射验证 调用子类的方法
+//            Method method = clazz.getDeclaredMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
+            Method method = clazz.getMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
             //调用方法
-            method.invoke(this,req,resp);
+            /**
+             * 为 true 则指示反射的对象在使用时应该取消 Java 语言访问检查
+             */
+            //(调用子类的方法,proptected修饰)
+//            method.setAccessible(true);
+            method.invoke(this,request,response) ;
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -45,34 +61,32 @@ public class BaseServlet extends HttpServlet {
             e.printStackTrace();
         }
 
+
     }
 
     /**
-     * 将obj写会前台 转换为json格式(json对象)
+     * 直接将obj对象转换成json格式,写回到前台
      * @param obj
      * @param response
      * @throws IOException
      */
-    public void writeVlue(Object obj,HttpServletResponse response) throws IOException {
-        //创建解析器对象
-        ObjectMapper mapper = new ObjectMapper();
-        //处理服务器响应的:json格式
+    public void writeValue(Object obj,HttpServletResponse response) throws IOException {
+        ObjectMapper mapper = new ObjectMapper() ;
+        //处理服务器的响应的格式:json格式
         response.setContentType("application/json;charset=utf-8");
-        //直接将集合对象写会
+        //写回
         mapper.writeValue(response.getOutputStream(),obj);
     }
 
-
     /**
-     * 将当前对象解析为json串
+     * 将当前对象解析json串返回前台
      * @param obj
      * @return
      * @throws JsonProcessingException
      */
-    public String writerValueAsString(Object obj) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
+    public String writeValueAsString(Object obj) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper() ;
         String json = mapper.writeValueAsString(obj);
         return json;
     }
-
 }
