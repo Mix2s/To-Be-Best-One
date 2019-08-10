@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="mapper.UserMapper">
+    <sql id="mySQL">
+        <if test="userEx!=null">
+            <if test="userEx.sex!=null">
+                and sex = #{userEx.sex}
+            </if>
+            <if test="userEx.username!=null">
+                and username like '%${userEx.username}%'
+            </if>
+        </if>
+    </sql>
+    <select id="queryUserByZH" parameterType="bz.UserBZ" resultType="poEx.UserEx">
+        select * from user
+        where username = #{userEx.username}
+    </select>
+
+    <select id="queryUserByZH2" parameterType="bz.UserBZ" resultType="int">
+        select count(*) from user
+        where username = #{userEx.username}
+    </select>
+
+    <select id="queryUserByotherName" resultType="poEx.UserEx" >
+       select username as
+       MyName,sex MySex,address MyAddress
+       from user;
+    </select>
+    <resultMap id="myResultMap" type="po.User">
+        <id column="id" property="id"></id>
+        <id column="MyName" property="username"></id>
+        <id column="MySex" property="sex"></id>
+        <id column="MyAddress" property="address"></id>
+    </resultMap>
+    <select id="queryUserByotherName2" resultMap="myResultMap" >
+       select username as
+       MyName,sex MySex,address MyAddress
+       from user;
+    </select>
+
+</mapper>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="mapper.OrdersMapper">
+    <select id="queryOrdersANDUser" resultType="poEx.OrdersEx">
+        select orders.*,user.id,user.username,user.address
+        from orders,user
+        where orders.user_id = user.id;
+    </select>
+
+    <resultMap id="queryOrderUserMResultMap" type="po.Orders">
+        <id column="id" property="id"></id>
+        <result column="user_id" property="userid"></result>
+        <result column="number" property="number"></result>
+        <result column="createtime" property="createtime"></result>
+        <result column="note" property="note"></result>
+        <association property="user" javaType="po.User">
+            <id column="user_id" property="id"></id>
+            <result column="username" property="username"></result>
+            <result column="address" property="address"></result>
+            <result column="sex" property="sex"></result>
+        </association>
+    </resultMap>
+    <!--实现 1 1-->
+    <select id="qyeryOrderToUser" resultMap="queryOrderUserMResultMap">
+         select
+            orders.*,
+            user.id,
+            user.username,
+            user.address
+        from orders,user
+        where orders.user_id = user.id;
+    </select>
+
+    <resultMap id="queryOdersToOrderDetailMap" type="po.Orders">
+        <id column="id" property="id"></id>
+        <result column="user_id" property="userid"></result>
+        <result column="number" property="number"></result>
+        <result column="createtime" property="createtime"></result>
+        <result column="note" property="note"></result>
+
+        <association property="user" javaType="po.User">
+            <id column="user_id" property="id"></id>
+            <result column="username" property="username"></result>
+            <result column="address" property="address"></result>
+            <result column="sex" property="sex"></result>
+        </association>
+
+        <!--1:m-->
+        <collection property="orderdetailList" ofType="po.Orderdetail">
+            <id column="OrderDetailID" property="id"></id>
+            <result column="orders_id" property="ordersId"></result>
+            <result column="items_id" property="itemsId"></result>
+            <result column="items_num" property="itemsNum"></result>
+        </collection>
+    </resultMap>
+    <select id="queryOdersToOrderDetail" resultMap="queryOdersToOrderDetailMap">
+         select
+            orders.*,
+            user.username,
+            user.address,
+            user.sex,
+            orderdetail.id as OrderDetailID,
+            orderdetail.orders_id,
+            orderdetail.items_id,
+            orderdetail.items_num
+        from
+            orders,
+            user,
+            orderdetail
+        where
+            orders.user_id = user.id
+            and
+            orders.id = orderdetail.orders_id;
+
+    </select>
+
+    <resultMap id="queryOdersToitesmMap" type="po.Orders">
+        <id column="id" property="id"></id>
+        <result column="user_id" property="userid"></result>
+        <result column="number" property="number"></result>
+        <result column="createtime" property="createtime"></result>
+        <result column="note" property="note"></result>
+
+        <association property="user" javaType="po.User">
+            <id column="user_id" property="id"></id>
+            <result column="username" property="username"></result>
+            <result column="address" property="address"></result>
+            <result column="sex" property="sex"></result>
+        </association>
+
+        <!--m:m-->
+        <collection property="orderdetailList" ofType="po.Orderdetail">
+            <id column="OrderDetailID" property="id"></id>
+            <result column="orders_id" property="ordersId"></result>
+            <result column="items_id" property="itemsId"></result>
+            <result column="items_num" property="itemsNum"></result>
+            <association property="items" javaType="po.Items">
+                <id column="ItemsID" property="id"></id>
+                <result column="name" property="name"></result>
+                <result column="detail" property="detail"></result>
+                <result column="price" property="price"></result>
+            </association>
+        </collection>
+
+        <!---->
+    </resultMap>
+    <select id="queryOrdersToitems" resultMap="queryOdersToitesmMap">
+        select
+	orders.*,
+    user.username,
+    user.address,
+    user.sex,
+    orderdetail.id as OrderDetailID,
+    orderdetail.orders_id,
+    orderdetail.items_id,
+    orderdetail.items_num,
+    items.id as ItemsID,
+    items.name,
+    items.detail,
+    items.price
+from
+	orders,
+    user,
+    orderdetail,
+    items
+    where
+	    orders.user_id = user.id
+	and
+    orders.id = orderdetail.orders_id
+    and
+    orderdetail.items_id = items.id;
+    </select>
+</mapper>
