@@ -20,3 +20,29 @@ public class Solution {
         return sc;
     }
 }
+
+
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        while(sc.hasNext()){
+            String str = sc.nextLine();
+            int tmp = 0;
+            int count = 0;
+            int end = 0;
+            for(int i=0;i<str.length();i++){
+                if(str.charAt(i)>='1' && str.charAt(i)<='9'){
+                    count++;
+                    if(count>tmp){
+                        tmp = count;
+                        end = i;
+                    }
+                }else{
+                    count = 0;
+                }
+            }
+            System.out.println(str.substring(end-tmp+1,end+1));
+        }
+    }
+}
