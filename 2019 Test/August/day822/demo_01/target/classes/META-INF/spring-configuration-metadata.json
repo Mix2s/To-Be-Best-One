@@ -1,0 +1,23 @@
+{
+  "groups": [
+    {
+      "name": "orders",
+      "type": "com.ming.demo_01.po.Orders",
+      "sourceType": "com.ming.demo_01.po.Orders"
+    }
+  ],
+  "properties": [
+    {
+      "name": "orders.order-id",
+      "type": "java.lang.Integer",
+      "sourceType": "com.ming.demo_01.po.Orders",
+      "defaultValue": 0
+    },
+    {
+      "name": "orders.order-name",
+      "type": "java.lang.String",
+      "sourceType": "com.ming.demo_01.po.Orders"
+    }
+  ],
+  "hints": []
+}

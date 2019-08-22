@@ -1,0 +1,24 @@
+# application.yml 该文件是springboot的【默认配置文件】 学习语法
+#server:
+#  port: 1111
+#激活profile
+#spring:
+#  profiles:
+#    active: pro
+#给POJO类的属性进行赋值操作(松散语法)
+#user:
+#  userName: arvin
+#  userAge: 20
+#  female: false
+#  myList:
+#    - listvalue1
+#    - listvalue2
+#  map:
+#    key1: mapValue1
+#    key2: mapValue2
+#    key3: mapValue3
+#  orders:
+#    orderId: 00101
+#    orderName: OrderName
+
+
