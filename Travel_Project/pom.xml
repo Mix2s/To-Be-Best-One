@@ -69,7 +69,7 @@
             <scope>compile</scope>
         </dependency>
         <!--beanUtils
-			将实体类进行封装 
+			将实体类进行封装
 			BeanUtils.populate(对象,当前表单中的所有的参数Map集合)
 		-->
         <dependency>

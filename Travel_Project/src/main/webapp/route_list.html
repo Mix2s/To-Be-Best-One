@@ -32,8 +32,6 @@
                 //window对象的函数
                 rname = window.decodeURIComponent(rname) ;
             }
-            alert(cid) ;
-            alert(rname) ;
            //页码载入后,执行load,通过分类id查询后台数据
 
             load(cid,null,rname) ;
@@ -51,24 +49,6 @@
                 //获取总记录数和总页数
                 $("#totalPage").html(data.totalPage);
                 $("#totalCount").html( data.totalCount);
-
-                //1.分页的页码的展示
-                /**
-                 *   <li><a href="">首页</a></li>
-                 <li class="threeword"><a href="#">上一页</a></li>
-                 <li class="curPage"><a href="#">1</a></li>
-                 <li><a href="#">2</a></li>
-                 <li><a href="#">3</a></li>
-                 <li><a href="#">4</a></li>
-                 <li><a href="#">5</a></li>
-                 <li><a href="#">6</a></li>
-                 <li><a href="#">7</a></li>
-                 <li><a href="#">8</a></li>
-                 <li><a href="#">9</a></li>
-                 <li><a href="#">10</a></li>
-                 <li class="threeword"><a href="javascript:;">下一页</a></li>
-                 <li class="threeword"><a href="javascript:;">末页</a></li>
-                 */
 
                 var lis = "" ;
 
@@ -131,22 +111,6 @@
                 }
 
 
-
-                //遍历服务器响应过来的总页数,将每页的页码获取到
-               /* for(var i = 1 ; i <=data.totalPage;i++){
-                    var li ;
-                    //判断是否是当前页码
-                  if(data.currentPage==i){
-                        li ='<li class="curPage" onclick="javascript:load('+cid+','+i+')"><a href="javascript:void(0)">'+i+'</a></li>' ;
-                    }else{
-                      //不是当前页,页码上不用加上颜色标记
-                        var li ='<li  onclick="javascript:load('+cid+','+i+')"><a href="javascript:void(0)">'+i+'</a></li>' ;
-                    }
-                   // var li ='<li onclick="javascript:load('+cid+','+i+')"><a href="javascript:void(0)">'+i+'</a></li>' ;
-
-                    lis += li ;
-                }*/
-                //下一页
                 var nextPage = '<li class="threeword"><a href="javascript:;">下一页</a></li>' ;
                 //末页
                 var lastPage = ' <li class="threeword"><a href="javascript:;">末页</a></li>' ;
@@ -156,30 +120,6 @@
                 //将lis作为ul的文本
                 $("#pageNum").html(lis) ;
 
-
-
-
-
-
-                //2.列表的数据展示
-                /**
-                 *  <li>
-                 <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
-                 <div class="text1">
-                 <p>【减100元 含除夕/春节出发】广州增城三英温泉度假酒店/自由行套票</p>
-                 <br/>
-                 <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
-                 </div>
-                 <div class="price">
-                 <p class="price_num">
-                 <span>&yen;</span>
-                 <span>299</span>
-                 <span>起</span>
-                 </p>
-                 <p><a href="route_detail.html">查看详情</a></p>
-                 </div>
-                 </li>
-                 */
 
                 var list_lis = "" ;
                 //遍历后台传递过来的pageBean中的列表数据集合
