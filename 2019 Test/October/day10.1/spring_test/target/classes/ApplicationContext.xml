@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--??dao??-->
+    <bean id = "accountDao" class="com.hui.dao.AccountDaoImpl">
+        <property name="runner" ref="runner"></property>
+    </bean>
+
+    <!--??runner??-->
+    <bean id="runner" class="org.apache.commons.dbutils.QueryRunner" scope="prototype">
+        <!--?????-->
+        <constructor-arg name="ds" ref="dateSource"></constructor-arg>
+    </bean>
+
+    <!--??service-->
+    <bean id = "accountService" class="com.hui.service.AccountServiceImpl">
+        <!--??dao??-->
+        <property name="accountDao" ref="accountDao"></property>
+    </bean>
+
+    <!--?????-->
+    <bean id="dateSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <!--?????????-->
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/eesy"></property>
+        <property name="user" value="root"></property>
+        <property name="password" value="109742"></property>
+    </bean>
+</beans>
