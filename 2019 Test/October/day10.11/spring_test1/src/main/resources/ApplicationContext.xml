@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+    <bean id="accountDao" class="com.hui.dao.AccountDaoImpl">
+        <property name="runner" ref="runner"></property>
+        <property name="connectionUtils" ref="connectionUtils"></property>
+    </bean>
+    <!--?????service-->
+    <bean id = "proxyAccountSetvice" factory-bean="beanFactory" factory-method="getAccountService"></bean>
+    <!--??beanFactory-->
+    <bean id = "beanFactory" class = "com.hui.factory.BeanFactory">
+        <property name="accountService" ref="accountService"></property>
+        <property name="txManager" ref="txManager"></property>
+    </bean>
+    <!--??-->
+    <context:component-scan base-package="com.hui"></context:component-scan>
+    
+    <!--Service-->
+    <bean id="accountService" class="com.hui.service.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao"></property>
+    </bean>
+    <!--??runner??-->
+    <bean id="runner" class="org.apache.commons.dbutils.QueryRunner" scope="prototype">
+
+    </bean>
+
+    <!--?????-->
+    <bean id="dateSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <!--?????????-->
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/eesy"></property>
+        <property name="user" value="root"></property>
+        <property name="password" value="109742"></property>
+    </bean>
+
+    <!--??ConnectionUtils-->
+    <bean id = "connectionUtils" class="com.hui.utils.ConnectionUtils">
+        <property name="dataSource" ref="dataSource">
+
+        </property>
+    </bean>
+
+    <!--???????-->
+    <bean id = "txManager" class="com.hui.utils.TransactionManager">
+        <property name="connectionUtils" ref="connectionUtils"></property>
+    </bean>
+</beans>

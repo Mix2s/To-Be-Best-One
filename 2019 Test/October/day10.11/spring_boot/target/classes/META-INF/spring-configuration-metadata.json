@@ -1,0 +1,39 @@
+{
+  "groups": [
+    {
+      "name": "user",
+      "type": "com.hui.spring_boot.po.User",
+      "sourceType": "com.hui.spring_boot.po.User"
+    }
+  ],
+  "properties": [
+    {
+      "name": "user.female",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.hui.spring_boot.po.User",
+      "defaultValue": false
+    },
+    {
+      "name": "user.map",
+      "type": "java.util.Map",
+      "sourceType": "com.hui.spring_boot.po.User"
+    },
+    {
+      "name": "user.my-lsit",
+      "type": "java.util.List<java.lang.Object>",
+      "sourceType": "com.hui.spring_boot.po.User"
+    },
+    {
+      "name": "user.user-age",
+      "type": "java.lang.Integer",
+      "sourceType": "com.hui.spring_boot.po.User",
+      "defaultValue": 0
+    },
+    {
+      "name": "user.user-name",
+      "type": "java.lang.String",
+      "sourceType": "com.hui.spring_boot.po.User"
+    }
+  ],
+  "hints": []
+}
