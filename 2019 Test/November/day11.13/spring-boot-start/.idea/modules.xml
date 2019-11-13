@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/huispringbootstarter/huispringbootstarter.iml" filepath="$PROJECT_DIR$/huispringbootstarter/huispringbootstarter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-starter-autoconfigurer/spring-starter-autoconfigurer.iml" filepath="$PROJECT_DIR$/spring-starter-autoconfigurer/spring-starter-autoconfigurer.iml" />
+    </modules>
+  </component>
+</project>
