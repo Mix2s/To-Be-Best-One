@@ -1,0 +1,48 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 109742
+    url: jdbc:mysql//localhost:3306/test
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#spring:
+#  freemarker:
+#    allow-request-override: false
+#    cache: true
+#    check-template-location: true
+#    charset: UTF-8
+#    content-type: text/html
+#    suffix: .ftl
+#    template-loader-path: classpath:/templates/
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC
+#    username: root
+#    password: 109742
+#    driver-class-name: com.mysql.jdbc.Driver
+#mybatis:
+#  type-aliases-package: com.hui.mapper
+#  mapper-locations: classpath:mapping/*.xml
+#logging:
+#  level:
+#    com:
+#      hui:
+#        mapper: DEBUG
+#pagehelper:
+#  reasonable: true
+#  support-methods-arguments: true
+#  page-size-zero: true
